@@ -6,7 +6,6 @@
 
 .content__profile {
   padding-bottom: 50px;
-  max-height: 120px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -112,6 +111,7 @@
   padding: 25px 0 25px 21px;
   font-weight: 900;
   font-size: 24px;
+  line-height: 29px;
   color: #000000;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -128,4 +128,66 @@
 .content__like-button-label {
   height: 19px;
   width: 19px;
+}
+
+@media screen and (max-width: 880px) {
+  .content__profile {
+    max-width: 581px;
+    margin: 0 auto;
+    padding-bottom: 36px;
+    flex-wrap: wrap;
+    row-gap: 30px;
+    justify-content: center;
+  }
+
+  .content__profile-add-button {
+    width: 282px;
+  }
+
+  .content__images {
+    max-width: 581px;
+    margin: 0 auto;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 581px) {
+  .content {
+    padding-bottom: 50px;
+  }
+
+  .content__profile {
+    flex-direction: column;
+  }
+
+  .content__profile-info {
+    max-width: 282px;
+    margin: 0 auto;
+    justify-content: center;
+    row-gap: 14px;
+  }
+
+  .content__profile-name {
+    max-width: 196px;
+    font-size: 22px;
+    line-height: 27px;
+  }
+
+  .content__profile-edit-button {
+    width: 18px;
+    height: 18px;
+  }
+
+  .content__about-me {
+    max-width: 282px;
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .content__images {
+    max-width: 282px;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+  }
 }
