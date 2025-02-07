@@ -79,3 +79,53 @@
   width: 22px;
   height: 22px;
 }
+
+.content__images {
+  max-width: 880px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 20px 17px;
+}
+
+.content__card {
+  max-width: 282px;
+  max-height: 361px;
+}
+
+.content__image {
+  max-width: 282px;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.content__image-tag {
+  background-color: white;
+  border-radius: 0px 0px 10px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content__image-title {
+  max-width: 222px;
+  margin: 0;
+  padding: 25px 0 25px 21px;
+  font-weight: 900;
+  font-size: 24px;
+  color: #000000;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.content__like-button {
+  box-sizing: border-box;
+  height: 19px;
+  width: 19px;
+  margin-right: 18px;
+}
+
+.content__like-button-label {
+  height: 19px;
+  width: 19px;
+}
