@@ -47,6 +47,11 @@
   align-items: center;
 }
 
+.content__profile-edit-button:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
 .content__edit-profile-button-label {
   width: 10px;
   height: 10px;
@@ -72,6 +77,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.content__profile-add-button:hover {
+  cursor: pointer;
+  opacity: 0.6;
 }
 
 .content__add-profile-button-label {
@@ -128,6 +138,11 @@
 .content__like-button-label {
   height: 19px;
   width: 19px;
+}
+
+.content__like-button-label:hover {
+  cursor: pointer;
+  opacity: 0.5;
 }
 
 @media screen and (max-width: 880px) {
