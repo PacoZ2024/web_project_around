@@ -12,6 +12,35 @@
   </head>
   <body>
     <div class="page">
+      <div class="popup">
+        <form class="form">
+          <div class="form__close-button">
+            <img
+              class="form__label-close-button"
+              src="./images/Close_button.svg"
+              alt="Botón cerrar formulario para editar perfil"
+            />
+          </div>
+          <fieldset class="form__edit-profile">
+            <legend class="form__title">Editar perfil</legend>
+            <input
+              class="form__field-name"
+              type="text"
+              placeholder="Nombre"
+              value="Jacques Cousteau"
+              required
+            />
+            <input
+              class="form__field-about-me"
+              type="text"
+              placeholder="Acerca de mí"
+              value="Explorador"
+              required
+            />
+            <button class="form__save-button" type="submit">Guardar</button>
+          </fieldset>
+        </form>
+      </div>
       <header class="header">
         <img
           class="header__logo"
