@@ -9,7 +9,6 @@ let form = document.querySelector(".form");
 let closeButton = form.querySelector(".form__label-close-button");
 let fieldName = form.querySelector(".form__field-name");
 let fieldAboutMe = form.querySelector(".form__field-about-me");
-let saveButton = form.querySelector(".form__save-button");
 
 function handleOpenPopup() {
   popup.classList.add("popup__open");
@@ -32,4 +31,4 @@ editButton.addEventListener("click", handleOpenPopup);
 
 closeButton.addEventListener("click", handleClosePopup);
 
-saveButton.addEventListener("submit", handleProfileFormSubmit);
+form.addEventListener("submit", handleProfileFormSubmit);
