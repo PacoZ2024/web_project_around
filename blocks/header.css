@@ -4,17 +4,17 @@
   padding: 45px 0 40px;
 }
 
+.header__line {
+  max-width: 880px;
+  height: 74px;
+  border: none;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(54, 54, 54, 0.7);
+}
+
 .header__logo {
   max-width: 173px;
   max-height: 33px;
-  padding-bottom: 41px;
-}
-
-.header__line {
-  display: block;
-  max-width: 880px;
-  opacity: 0.7;
-  border: 1px solid #545454;
 }
 
 @media screen and (max-width: 880px) {
@@ -30,9 +30,13 @@
     padding: 28px 0 42px;
   }
 
+  .header__line {
+    height: 56px;
+  }
+
   .header__logo {
     max-width: 126px;
     max-height: 24px;
-    padding: 0 0 32px 27px;
+    padding-left: 27px;
   }
 }
