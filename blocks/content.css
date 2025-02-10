@@ -20,14 +20,21 @@
   margin: 0 auto 0 30px;
   max-width: 415px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   flex-wrap: wrap;
-  column-gap: 18px;
   row-gap: 16px;
 }
 
+.content__profile-distribution {
+  width: 415px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 18px;
+}
+
 .content__profile-name {
-  width: 373px;
+  max-width: 373px;
   font-weight: 500;
   font-size: 42px;
   line-height: 48px;
@@ -179,8 +186,13 @@
   .content__profile-info {
     max-width: 282px;
     margin: 0 auto;
-    justify-content: center;
     row-gap: 14px;
+  }
+
+  .content__profile-distribution {
+    width: 282px;
+    column-gap: 10px;
+    justify-content: center;
   }
 
   .content__profile-name {
@@ -195,9 +207,10 @@
   }
 
   .content__about-me {
-    max-width: 282px;
+    width: 282px;
     font-size: 14px;
     line-height: 17px;
+    text-align: center;
   }
 
   .content__images {
