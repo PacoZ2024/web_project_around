@@ -12,30 +12,57 @@
   </head>
   <body>
     <div class="page">
-      <div class="popup">
-        <form class="form">
-          <div class="form__close-button">
+      <div class="popup" id="popup__edit-profile">
+        <form class="form" id="form__edit-profile">
+          <div class="form__close-button" id="form__close-edit-profile-button">
             <img
               class="form__label-close-button"
               src="./images/Close_button.svg"
               alt="Botón cerrar formulario para editar perfil"
             />
           </div>
-          <fieldset class="form__edit-profile">
+          <fieldset class="form__content">
             <legend class="form__title">Editar perfil</legend>
             <input
-              class="form__field-name"
+              class="form__field form__field-name"
               type="text"
               placeholder="Nombre"
               required
             />
             <input
-              class="form__field-about-me"
+              class="form__field form__field-about-me"
               type="text"
               placeholder="Acerca de mí"
               required
             />
-            <button class="form__save-button" type="submit">Guardar</button>
+            <button class="form__button" type="submit">Guardar</button>
+          </fieldset>
+        </form>
+      </div>
+      <div class="popup" id="popup__add-new-place">
+        <form class="form" id="form__add-new-place">
+          <div class="form__close-button" id="form__close-add-new-place-button">
+            <img
+              class="form__label-close-button"
+              src="./images/Close_button.svg"
+              alt="Botón cerrar formulario para añadir un nuevo lugar"
+            />
+          </div>
+          <fieldset class="form__content">
+            <legend class="form__title">Nuevo lugar</legend>
+            <input
+              class="form__field form__field-title"
+              type="text"
+              placeholder="Título"
+              required
+            />
+            <input
+              class="form__field form__field-link-image"
+              type="text"
+              placeholder="Enlace a la imagen"
+              required
+            />
+            <button class="form__button" type="submit">Crear</button>
           </fieldset>
         </form>
       </div>
@@ -68,117 +95,30 @@
             </div>
             <p class="content__about-me">Explorador</p>
           </div>
-          <div class="content__profile-add-button">
+          <div class="content__new-place-add-button">
             <img
-              class="content__add-profile-button-label"
+              class="content__add-new-place-button-label"
               src="./images/Add_button.svg"
-              alt="Botón para agregar perfil"
+              alt="Botón para añadir nuevos lugares"
             />
           </div>
         </section>
         <section class="content__images">
-          <div class="content__card">
-            <img
-              class="content__image"
-              src="./images/Valle_de_Yosemite.jpg"
-              alt="Valle de Yosemite"
-            />
-            <div class="content__image-tag">
-              <p class="content__image-title">Valle de Yosemite</p>
-              <div class="content__like-button">
-                <img
-                  class="content__like-button-label"
-                  src="./images/Like.svg"
-                  alt="Botón me gusta"
-                />
+          <template id="card-template">
+            <div class="content__card">
+              <img class="content__image" />
+              <div class="content__image-tag">
+                <p class="content__image-title"></p>
+                <div class="content__like-button">
+                  <img
+                    class="content__like-button-label"
+                    src="./images/Like.svg"
+                    alt="Botón me gusta"
+                  />
+                </div>
               </div>
             </div>
-          </div>
-          <div class="content__card">
-            <img
-              class="content__image"
-              src="./images/Lago_Louise.jpg"
-              alt="Lago Louise"
-            />
-            <div class="content__image-tag">
-              <p class="content__image-title">Lago Louise</p>
-              <div class="content__like-button">
-                <img
-                  class="content__like-button-label"
-                  src="./images/Like.svg"
-                  alt="Botón me gusta"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="content__card">
-            <img
-              class="content__image"
-              src="./images/Montañas_Calvas.jpg"
-              alt="Montañas Calvas"
-            />
-            <div class="content__image-tag">
-              <p class="content__image-title">Montañas Calvas</p>
-              <div class="content__like-button">
-                <img
-                  class="content__like-button-label"
-                  src="./images/Like.svg"
-                  alt="Botón me gusta"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="content__card">
-            <img
-              class="content__image"
-              src="./images/Latemar.jpg"
-              alt="Latemar"
-            />
-            <div class="content__image-tag">
-              <p class="content__image-title">Latemar</p>
-              <div class="content__like-button">
-                <img
-                  class="content__like-button-label"
-                  src="./images/Like.svg"
-                  alt="Botón me gusta"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="content__card">
-            <img
-              class="content__image"
-              src="./images/Vanois National.jpg"
-              alt="Vanois National"
-            />
-            <div class="content__image-tag">
-              <p class="content__image-title">Vanois National</p>
-              <div class="content__like-button">
-                <img
-                  class="content__like-button-label"
-                  src="./images/Like.svg"
-                  alt="Botón me gusta"
-                />
-              </div>
-            </div>
-          </div>
-          <div class="content__card">
-            <img
-              class="content__image"
-              src="./images/Lago_di_Braies.jpg"
-              alt="Lago di Braies"
-            />
-            <div class="content__image-tag">
-              <p class="content__image-title">Lago di Braies</p>
-              <div class="content__like-button">
-                <img
-                  class="content__like-button-label"
-                  src="./images/Like.svg"
-                  alt="Botón me gusta"
-                />
-              </div>
-            </div>
-          </div>
+          </template>
         </section>
       </main>
       <footer class="footer">

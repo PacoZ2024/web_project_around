@@ -27,7 +27,7 @@
   opacity: 0.6;
 }
 
-.form__edit-profile {
+.form__content {
   border: none;
   padding: 0;
   margin: 33px 36px 36px;
@@ -45,43 +45,40 @@
   line-height: 29px;
 }
 
-.form__field-name {
+.form__field {
   width: 358px;
   height: 27px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
   color: #000000;
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  margin: 53px 0 28px;
   padding: 0;
 }
 
-.form__field-name:focus {
+.form__field:focus {
   outline: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.form__field-name {
+  margin: 53px 0 28px;
 }
 
 .form__field-about-me {
-  width: 358px;
-  height: 27px;
-  border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: #000000;
-  padding: 0;
   margin: 0 0 47px;
 }
 
-.form__field-about-me:focus {
-  outline: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+.form__field-title {
+  margin: 54px 0 30px;
 }
 
-.form__save-button {
+.form__field-link-image {
+  margin: 0 0 48px;
+}
+
+.form__button {
   width: 358px;
   height: 50px;
   box-sizing: border-box;
@@ -97,7 +94,7 @@
   margin: 0;
 }
 
-.form__save-button:hover {
+.form__button:hover {
   opacity: 0.8;
   cursor: pointer;
 }
@@ -119,7 +116,7 @@
     width: 26px;
   }
 
-  .form__edit-profile {
+  .form__content {
     margin: 25px 22px;
   }
 
@@ -129,19 +126,28 @@
     line-height: 22px;
   }
 
-  .form__field-name {
+  .form__field {
     width: 238px;
     height: 26px;
+  }
+
+  .form__field-name {
     margin: 76px 0 30px;
   }
 
   .form__field-about-me {
-    width: 238px;
-    height: 26px;
     margin: 0 0 46px;
   }
 
-  .form__save-button {
+  .form__field-title {
+    margin: 76px 0 30px;
+  }
+
+  .form__field-link-image {
+    margin: 0 0 46px;
+  }
+
+  .form__button {
     width: 238px;
     height: 46px;
     font-size: 14px;

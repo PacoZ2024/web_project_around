@@ -75,7 +75,7 @@
   overflow: hidden;
 }
 
-.content__profile-add-button {
+.content__new-place-add-button {
   box-sizing: border-box;
   width: 150px;
   height: 50px;
@@ -86,12 +86,12 @@
   align-items: center;
 }
 
-.content__profile-add-button:hover {
+.content__new-place-add-button:hover {
   cursor: pointer;
   opacity: 0.6;
 }
 
-.content__add-profile-button-label {
+.content__add-new-place-button-label {
   width: 22px;
   height: 22px;
 }
@@ -110,7 +110,8 @@
 }
 
 .content__image {
-  max-width: 282px;
+  width: 282px;
+  height: 282px;
   border-radius: 10px 10px 0px 0px;
 }
 
@@ -147,6 +148,14 @@
   width: 19px;
 }
 
+.content__like-button-label-active {
+  height: 20px;
+  width: 20px;
+  background-image: url("../images/Like_active.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 .content__like-button-label:hover {
   cursor: pointer;
   opacity: 0.5;
@@ -162,7 +171,7 @@
     justify-content: center;
   }
 
-  .content__profile-add-button {
+  .content__new-place-add-button {
     width: 282px;
   }
 
