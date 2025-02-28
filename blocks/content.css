@@ -107,12 +107,33 @@
 .content__card {
   max-width: 282px;
   max-height: 361px;
+  position: relative;
 }
 
 .content__image {
   width: 282px;
   height: 282px;
   border-radius: 10px 10px 0px 0px;
+}
+
+.content__delete-button {
+  box-sizing: border-box;
+  height: 19px;
+  width: 18px;
+  z-index: 1;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+}
+
+.content__delete-button-label {
+  height: 19px;
+  width: 18px;
+}
+
+.content__delete-button-label:hover {
+  cursor: pointer;
+  opacity: 0.5;
 }
 
 .content__image-tag {
@@ -148,17 +169,17 @@
   width: 19px;
 }
 
+.content__like-button-label:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
 .content__like-button-label-active {
   height: 20px;
   width: 20px;
   background-image: url("../images/Like_active.svg");
   background-repeat: no-repeat;
   background-position: center;
-}
-
-.content__like-button-label:hover {
-  cursor: pointer;
-  opacity: 0.5;
 }
 
 @media screen and (max-width: 880px) {
