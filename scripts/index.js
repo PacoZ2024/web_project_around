@@ -102,6 +102,8 @@ function handleAddNewPlaceFormSubmit(evt) {
   evt.preventDefault();
   const card = { name: fieldTitle.value, link: fieldLinkImage.value };
   cardsContainer.prepend(createCard(card));
+  fieldTitle.value = "";
+  fieldLinkImage.value = "";
   handleClosePopupAddNewPlace();
 }
 
