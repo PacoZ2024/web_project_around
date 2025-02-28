@@ -60,18 +60,20 @@ function createCard(card) {
     .querySelector(".content__card")
     .cloneNode(true);
   const LikeButton = cardElement.querySelector(".content__like-button-label");
+  const DeleteButton = cardElement.querySelector(
+    ".content__delete-button-label"
+  );
   cardElement.querySelector(".content__image-title").textContent = card.name;
   cardElement.querySelector(".content__image").src = card.link;
   cardElement.querySelector(".content__image").alt = card.name;
   LikeButton.addEventListener("click", function () {
     LikeButton.classList.toggle("content__like-button-label-active");
   });
+  DeleteButton.addEventListener("click", function () {
+    cardElement.remove();
+  });
   return cardElement;
 }
-
-initialCards.forEach((card) => {
-  cardsContainer.append(createCard(card));
-});
 
 function handleOpenPopupEditProfile() {
   popupEditProfile.classList.add("popup__open");
@@ -106,6 +108,10 @@ function handleAddNewPlaceFormSubmit(evt) {
   fieldLinkImage.value = "";
   handleClosePopupAddNewPlace();
 }
+
+initialCards.forEach((card) => {
+  cardsContainer.append(createCard(card));
+});
 
 EditProfileButton.addEventListener("click", handleOpenPopupEditProfile);
 
