@@ -4,11 +4,51 @@
   height: 100%;
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 2;
   justify-content: center;
   align-items: center;
 }
 
 .popup__open {
   display: flex;
+}
+
+.popup__content-image {
+  position: relative;
+}
+
+.popup__close-button {
+  box-sizing: border-box;
+  height: 40px;
+  width: 40px;
+  border: none;
+  position: absolute;
+  right: -40px;
+  top: -40px;
+}
+
+.popup__label-close-button {
+  height: 40px;
+  width: 40px;
+}
+
+.popup__label-close-button:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.popup__image {
+  max-height: 540px;
+  max-width: 816px;
+}
+
+.popup__title-image {
+  margin: 0;
+  max-width: 291px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }

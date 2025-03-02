@@ -115,6 +115,10 @@
   border-radius: 10px 10px 0px 0px;
 }
 
+.content__image:hover {
+  cursor: pointer;
+}
+
 .content__delete-button {
   box-sizing: border-box;
   height: 19px;
@@ -132,7 +136,7 @@
 
 .content__delete-button-label:hover {
   cursor: pointer;
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .content__image-tag {
