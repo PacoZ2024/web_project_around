@@ -52,3 +52,35 @@
   white-space: nowrap;
   overflow: hidden;
 }
+
+@media screen and (max-width: 896px) {
+  .popup__image {
+    max-width: 544px;
+    max-height: 360px;
+  }
+}
+
+@media screen and (max-width: 624px) {
+  .popup__image {
+    max-width: 362px;
+  }
+
+  .popup__label-close-button {
+    width: 30px;
+    height: 30px;
+  }
+
+  .popup__close-button {
+    width: 30px;
+    height: 30px;
+    right: -36px;
+    top: -36px;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .popup__image {
+    max-height: 299px;
+    max-width: 240px;
+  }
+}
