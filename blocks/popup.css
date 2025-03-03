@@ -83,4 +83,8 @@
     max-height: 299px;
     max-width: 240px;
   }
+
+  .popup__title-image {
+    max-width: 240px;
+  }
 }
