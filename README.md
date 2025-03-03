@@ -1,4 +1,4 @@
-# Proyecto 7: Alrededor de los Estados Unidos
+# Proyecto 7 & 8: Alrededor de los Estados Unidos
 
 La página web titulada "Alrededor de los EE.UU.", es una página interactiva en la que los usuarios pueden añadir, eliminar o dar "me gusta" a las diferentes fotografías que muestran paisajes de los Estados Unidos. Fue creada a partir de un diseño en Figma y desplegada en GitHub Pages.
 
