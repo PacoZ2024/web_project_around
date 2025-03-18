@@ -27,12 +27,16 @@
               class="form__field form__field-name"
               type="text"
               placeholder="Nombre"
+              minlength="2"
+              maxlength="40"
               required
             />
             <input
               class="form__field form__field-about-me"
               type="text"
               placeholder="Acerca de mí"
+              minlength="2"
+              maxlength="200"
               required
             />
             <button class="form__button" type="submit">Guardar</button>
@@ -54,11 +58,13 @@
               class="form__field form__field-title"
               type="text"
               placeholder="Título"
+              minlength="2"
+              maxlength="30"
               required
             />
             <input
               class="form__field form__field-link-image"
-              type="text"
+              type="url"
               placeholder="Enlace a la imagen"
               required
             />
