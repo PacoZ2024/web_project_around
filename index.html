@@ -13,7 +13,7 @@
   <body>
     <div class="page">
       <div class="popup" id="popup__edit-profile">
-        <form class="form" id="form__edit-profile">
+        <form class="form" id="form__edit-profile" novalidate>
           <div class="form__close-button" id="form__close-edit-profile-button">
             <img
               class="form__label-close-button"
@@ -24,27 +24,33 @@
           <fieldset class="form__content">
             <legend class="form__title">Editar perfil</legend>
             <input
+              id="name-input"
               class="form__field form__field-name"
               type="text"
               placeholder="Nombre"
               minlength="2"
               maxlength="40"
+              value="Jacques Cousteau"
               required
             />
+            <span class="name-input-error form__field-error"></span>
             <input
+              id="about-me-input"
               class="form__field form__field-about-me"
               type="text"
               placeholder="Acerca de mí"
               minlength="2"
               maxlength="200"
+              value="Explorador"
               required
             />
+            <span class="about-me-input-error form__field-error"></span>
             <button class="form__button" type="submit">Guardar</button>
           </fieldset>
         </form>
       </div>
       <div class="popup" id="popup__add-new-place">
-        <form class="form" id="form__add-new-place">
+        <form class="form" id="form__add-new-place" novalidate>
           <div class="form__close-button" id="form__close-add-new-place-button">
             <img
               class="form__label-close-button"
@@ -55,6 +61,7 @@
           <fieldset class="form__content">
             <legend class="form__title">Nuevo lugar</legend>
             <input
+              id="title-input"
               class="form__field form__field-title"
               type="text"
               placeholder="Título"
@@ -62,12 +69,15 @@
               maxlength="30"
               required
             />
+            <span class="title-input-error form__field-error"></span>
             <input
+              id="link-image"
               class="form__field form__field-link-image"
               type="url"
               placeholder="Enlace a la imagen"
               required
             />
+            <span class="link-image-error form__field-error"></span>
             <button class="form__button" type="submit">Crear</button>
           </fieldset>
         </form>
@@ -152,5 +162,6 @@
       </footer>
     </div>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
   </body>
 </html>
