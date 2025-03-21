@@ -1,5 +1,6 @@
 const popupEditProfile = document.querySelector("#popup__edit-profile");
 const popupAddNewPlace = document.querySelector("#popup__add-new-place");
+const popupShowImage = document.querySelector("#popup__show-image");
 
 const content = document.querySelector(".content");
 const profileName = content.querySelector(".content__profile-name");
@@ -27,8 +28,8 @@ const closeShowImageButton = document.querySelector(
   ".popup__label-close-button"
 );
 
-const formEditProfile = document.querySelector("#form__edit-profile");
-const formAddNewPlace = document.querySelector("#form__add-new-place");
+const formEditProfile = document.forms.formEditProfile;
+const formAddNewPlace = document.forms.formAddNewPlace;
 
 const cardsContainer = document.querySelector(".content__images");
 const initialCards = [
@@ -139,7 +140,10 @@ formEditProfile.addEventListener("submit", handleEditProfileFormSubmit);
 
 addNewPlaceButton.addEventListener("click", handleOpenPopupAddNewPlace);
 
-closeAddNewPlaceButton.addEventListener("click", handleClosePopupAddNewPlace);
+closeAddNewPlaceButton.addEventListener("click", function (evt) {
+  handleClosePopupAddNewPlace(evt);
+  formAddNewPlace.reset();
+});
 
 formAddNewPlace.addEventListener("submit", handleAddNewPlaceFormSubmit);
 
@@ -152,10 +156,7 @@ document.addEventListener("keydown", function (evt) {
   }
 });
 
-const popupElementEditProfile = document.querySelector("#popup__edit-profile");
-const popupElementAddNewPlace = document.querySelector("#popup__add-new-place");
-const popupElementShowImage = document.querySelector("#popup__show-image");
-popupElementEditProfile.addEventListener("click", function (evt) {
+popupEditProfile.addEventListener("click", function (evt) {
   if (evt.target.classList.contains("popup")) {
     handleClosePopupEditProfile();
   }
@@ -163,9 +164,10 @@ popupElementEditProfile.addEventListener("click", function (evt) {
 popupAddNewPlace.addEventListener("click", function (evt) {
   if (evt.target.classList.contains("popup")) {
     handleClosePopupAddNewPlace();
+    formAddNewPlace.reset();
   }
 });
-popupElementShowImage.addEventListener("click", function (evt) {
+popupShowImage.addEventListener("click", function (evt) {
   if (evt.target.classList.contains("popup")) {
     handleClosePopupShowImage(evt);
   }
