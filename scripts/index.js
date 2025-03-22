@@ -1,3 +1,5 @@
+import { resetValidation } from "./validate.js";
+
 const popupEditProfile = document.querySelector("#popup__edit-profile");
 const popupAddNewPlace = document.querySelector("#popup__add-new-place");
 const popupShowImage = document.querySelector("#popup__show-image");
@@ -91,6 +93,9 @@ function createCard(card) {
 }
 
 function handleOpenPopupEditProfile() {
+  const buttonElement = formEditProfile.querySelector(".form__button");
+  buttonElement.removeAttribute("disabled");
+  buttonElement.classList.remove("form__button-disabled");
   popupEditProfile.classList.add("popup__open");
   fieldName.value = profileName.textContent;
   fieldAboutMe.value = aboutMe.textContent;
@@ -102,10 +107,13 @@ function handleOpenPopupAddNewPlace() {
 
 function handleClosePopupEditProfile() {
   popupEditProfile.classList.remove("popup__open");
+  resetValidation(formEditProfile);
 }
 
 function handleClosePopupAddNewPlace() {
   popupAddNewPlace.classList.remove("popup__open");
+  resetValidation(formAddNewPlace);
+  formAddNewPlace.reset();
 }
 
 function handleEditProfileFormSubmit(evt) {
@@ -140,10 +148,7 @@ formEditProfile.addEventListener("submit", handleEditProfileFormSubmit);
 
 addNewPlaceButton.addEventListener("click", handleOpenPopupAddNewPlace);
 
-closeAddNewPlaceButton.addEventListener("click", function (evt) {
-  handleClosePopupAddNewPlace(evt);
-  formAddNewPlace.reset();
-});
+closeAddNewPlaceButton.addEventListener("click", handleClosePopupAddNewPlace);
 
 formAddNewPlace.addEventListener("submit", handleAddNewPlaceFormSubmit);
 
@@ -152,7 +157,13 @@ closeShowImageButton.addEventListener("click", handleClosePopupShowImage);
 document.addEventListener("keydown", function (evt) {
   const elementPopup = document.querySelector(".popup__open");
   if (evt.key === "Escape") {
-    elementPopup.classList.remove("popup__open");
+    if (elementPopup.id === "popup__edit-profile") {
+      handleClosePopupEditProfile();
+    } else if (elementPopup.id === "popup__add-new-place") {
+      handleClosePopupAddNewPlace();
+    } else if (elementPopup.id === "popup__show-image") {
+      elementPopup.classList.remove("popup__open");
+    }
   }
 });
 
@@ -164,7 +175,6 @@ popupEditProfile.addEventListener("click", function (evt) {
 popupAddNewPlace.addEventListener("click", function (evt) {
   if (evt.target.classList.contains("popup")) {
     handleClosePopupAddNewPlace();
-    formAddNewPlace.reset();
   }
 });
 popupShowImage.addEventListener("click", function (evt) {

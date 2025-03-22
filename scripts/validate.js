@@ -75,3 +75,15 @@ enableValidation({
   inputErrorClass: "form__field_type_error",
   errorClass: "form__field-error_active",
 });
+
+const resetValidation = (formElement) => {
+  const inputList = Array.from(formElement.querySelectorAll(".form__field"));
+  inputList.forEach((inputElement) => {
+    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
+    inputElement.classList.remove("form__field_type_error");
+    errorElement.classList.remove("form__field-error_active");
+    errorElement.textContent = "";
+  });
+};
+
+export { resetValidation };
