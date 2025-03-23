@@ -3,6 +3,9 @@ import { resetValidation } from "./validate.js";
 const popupEditProfile = document.querySelector("#popup__edit-profile");
 const popupAddNewPlace = document.querySelector("#popup__add-new-place");
 const popupShowImage = document.querySelector("#popup__show-image");
+const closeShowImageButton = document.querySelector(
+  ".popup__label-close-button"
+);
 
 const content = document.querySelector(".content");
 const profileName = content.querySelector(".content__profile-name");
@@ -13,27 +16,21 @@ const EditProfileButton = content.querySelector(
 const addNewPlaceButton = content.querySelector(
   ".content__new-place-add-button"
 );
+const cardsContainer = document.querySelector(".content__images");
 
-const form = document.querySelector(".form");
-const fieldName = form.querySelector(".form__field-name");
-const fieldAboutMe = form.querySelector(".form__field-about-me");
-const closeEditProfileButton = form.querySelector(
+const formEditProfile = document.forms.formEditProfile;
+const formAddNewPlace = document.forms.formAddNewPlace;
+const fieldName = document.forms.formEditProfile.elements.fieldName;
+const fieldAboutMe = document.forms.formEditProfile.elements.fieldAboutMe;
+const closeEditProfileButton = document.querySelector(
   "#form__close-edit-profile-button"
 );
-const fieldTitle = document.querySelector(".form__field-title");
-const fieldLinkImage = document.querySelector(".form__field-link-image");
+const fieldTitle = document.forms.formAddNewPlace.elements.fieldTitle;
+const fieldLinkImage = document.forms.formAddNewPlace.elements.fieldLinkImage;
 const closeAddNewPlaceButton = document.querySelector(
   "#form__close-add-new-place-button"
 );
 
-const closeShowImageButton = document.querySelector(
-  ".popup__label-close-button"
-);
-
-const formEditProfile = document.forms.formEditProfile;
-const formAddNewPlace = document.forms.formAddNewPlace;
-
-const cardsContainer = document.querySelector(".content__images");
 const initialCards = [
   {
     name: "Valle de Yosemite",
@@ -61,6 +58,7 @@ const initialCards = [
   },
 ];
 
+//Crea una carta
 function createCard(card) {
   const cardTemplate = document.querySelector("#card-template").content;
   const cardElement = cardTemplate
@@ -74,12 +72,18 @@ function createCard(card) {
   cardElement.querySelector(".content__image-title").textContent = card.name;
   cardElement.querySelector(".content__image").src = card.link;
   cardElement.querySelector(".content__image").alt = card.name;
+
+  //Detector de evento click para el activar/desactivar el botón Like de la carta
   LikeButton.addEventListener("click", function () {
     LikeButton.classList.toggle("content__like-button-label-active");
   });
+
+  //Detector de evento click para eliminar la carta
   DeleteButton.addEventListener("click", function () {
     cardElement.remove();
   });
+
+  //Detector de evento click para mostrar imagen
   cardImage.addEventListener("click", function () {
     const popupImage = document.querySelector("#popup__show-image");
     const image = popupImage.querySelector(".popup__image");
@@ -92,6 +96,7 @@ function createCard(card) {
   return cardElement;
 }
 
+//Manejadores de eventos para abrir formularios
 function handleOpenPopupEditProfile() {
   const buttonElement = formEditProfile.querySelector(".form__button");
   buttonElement.removeAttribute("disabled");
@@ -105,6 +110,7 @@ function handleOpenPopupAddNewPlace() {
   popupAddNewPlace.classList.add("popup__open");
 }
 
+//Manejadores de eventos para cerrar formularios y la vista de la imagen
 function handleClosePopupEditProfile() {
   popupEditProfile.classList.remove("popup__open");
   resetValidation(formEditProfile);
@@ -116,6 +122,11 @@ function handleClosePopupAddNewPlace() {
   formAddNewPlace.reset();
 }
 
+function handleClosePopupShowImage(evt) {
+  evt.target.closest(".popup").classList.remove("popup__open");
+}
+
+//Manejadores de eventos para enviar la información del formulario
 function handleEditProfileFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = fieldName.value;
@@ -132,41 +143,7 @@ function handleAddNewPlaceFormSubmit(evt) {
   handleClosePopupAddNewPlace();
 }
 
-function handleClosePopupShowImage(evt) {
-  evt.target.closest(".popup").classList.remove("popup__open");
-}
-
-initialCards.forEach((card) => {
-  cardsContainer.append(createCard(card));
-});
-
-EditProfileButton.addEventListener("click", handleOpenPopupEditProfile);
-
-closeEditProfileButton.addEventListener("click", handleClosePopupEditProfile);
-
-formEditProfile.addEventListener("submit", handleEditProfileFormSubmit);
-
-addNewPlaceButton.addEventListener("click", handleOpenPopupAddNewPlace);
-
-closeAddNewPlaceButton.addEventListener("click", handleClosePopupAddNewPlace);
-
-formAddNewPlace.addEventListener("submit", handleAddNewPlaceFormSubmit);
-
-closeShowImageButton.addEventListener("click", handleClosePopupShowImage);
-
-document.addEventListener("keydown", function (evt) {
-  const elementPopup = document.querySelector(".popup__open");
-  if (evt.key === "Escape") {
-    if (elementPopup.id === "popup__edit-profile") {
-      handleClosePopupEditProfile();
-    } else if (elementPopup.id === "popup__add-new-place") {
-      handleClosePopupAddNewPlace();
-    } else if (elementPopup.id === "popup__show-image") {
-      elementPopup.classList.remove("popup__open");
-    }
-  }
-});
-
+//Detectores de eventos click en el exterior del formulario para cerrarlo
 popupEditProfile.addEventListener("click", function (evt) {
   if (evt.target.classList.contains("popup")) {
     handleClosePopupEditProfile();
@@ -181,4 +158,40 @@ popupShowImage.addEventListener("click", function (evt) {
   if (evt.target.classList.contains("popup")) {
     handleClosePopupShowImage(evt);
   }
+});
+
+//Detector de eventos tecla ESC para cerrar formularios y vista de la imagen
+document.addEventListener("keydown", function (evt) {
+  const elementPopup = document.querySelector(".popup__open");
+  if (evt.key === "Escape") {
+    if (elementPopup.id === "popup__edit-profile") {
+      handleClosePopupEditProfile();
+    } else if (elementPopup.id === "popup__add-new-place") {
+      handleClosePopupAddNewPlace();
+    } else if (elementPopup.id === "popup__show-image") {
+      elementPopup.classList.remove("popup__open");
+    }
+  }
+});
+
+//Detectores de eventos click para abrir formularios
+EditProfileButton.addEventListener("click", handleOpenPopupEditProfile);
+
+addNewPlaceButton.addEventListener("click", handleOpenPopupAddNewPlace);
+
+//Detectores de eventos click para cerrar formularios y vista de imagen con el boton cerrar
+closeEditProfileButton.addEventListener("click", handleClosePopupEditProfile);
+
+closeAddNewPlaceButton.addEventListener("click", handleClosePopupAddNewPlace);
+
+closeShowImageButton.addEventListener("click", handleClosePopupShowImage);
+
+//Detectores de eventos click para enviar información del formulario
+formEditProfile.addEventListener("submit", handleEditProfileFormSubmit);
+
+formAddNewPlace.addEventListener("submit", handleAddNewPlaceFormSubmit);
+
+//Inicialización de las cartas
+initialCards.forEach((card) => {
+  cardsContainer.append(createCard(card));
 });
