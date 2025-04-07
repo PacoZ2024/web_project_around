@@ -1,149 +1,123 @@
-import { resetValidation } from "./validate.js";
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+import {
+  popupEditProfile,
+  popupAddNewPlace,
+  content,
+  formEditProfile,
+  formAddNewPlace,
+  handleOpenPopupEditProfile,
+  handleOpenPopupAddNewPlace,
+  handleClosePopupEditProfile,
+  handleClosePopupAddNewPlace,
+  handleClosePopupShowImage,
+  handleEditProfileFormSubmit,
+  handleAddNewPlaceFormSubmit,
+} from "./utils.js";
 
-const popupEditProfile = document.querySelector("#popup__edit-profile");
-const popupAddNewPlace = document.querySelector("#popup__add-new-place");
+//Datos para inicializar el perfil con seis cartas preestablecidas.
+const initialCards = [
+  {
+    title: "Valle de Yosemite",
+    image:
+      "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
+  },
+  {
+    title: "Lago Louise",
+    image:
+      "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
+  },
+  {
+    title: "Montañas Calvas",
+    image:
+      "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
+  },
+  {
+    title: "Latemar",
+    image:
+      "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
+  },
+  {
+    title: "Parque Nacional de la Vanoise",
+    image:
+      "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
+  },
+  {
+    title: "Lago di Braies",
+    image:
+      "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
+  },
+];
+
+//Renderizando el perfil con las seis cartas
+initialCards.forEach((item) => {
+  const card = new Card(item, "#card-template");
+  const cardElement = card.generateCard();
+  document.querySelector(".content__images").prepend(cardElement);
+});
+
+//Configuración para la validación del formulario Editar Perfil
+const settingsFormEditProfile = {
+  settings: {
+    inputSelector: ".form__field",
+    submitButtonSelector: ".form__button",
+    inactiveButtonClass: "form__button-disabled",
+    inputErrorClass: "form__field_type_error",
+    errorClass: "form__field-error_active",
+  },
+  formSelector: "#form__edit-profile",
+};
+
+//Creando un objeto para la validación del formulario Editar Perfil
+const formValidatorEditProfile = new FormValidator(
+  settingsFormEditProfile.settings,
+  settingsFormEditProfile.formSelector
+);
+
+//Ejecutando la validación para el formulario Editar Perfil
+formValidatorEditProfile.enableValidation();
+
+//Configuración para la validación del formulario Agregar Nuevo Lugar
+const settingsFormAddNewPlace = {
+  settings: {
+    inputSelector: ".form__field",
+    submitButtonSelector: ".form__button",
+    inactiveButtonClass: "form__button-disabled",
+    inputErrorClass: "form__field_type_error",
+    errorClass: "form__field-error_active",
+  },
+  formSelector: "#form__add-new-place",
+};
+
+//Creando un objeto para la validación del formulario Agregar Nuevo Lugar
+const formValidatorAddNewPlace = new FormValidator(
+  settingsFormAddNewPlace.settings,
+  settingsFormAddNewPlace.formSelector
+);
+
+//Ejecutando la validación para el formulario Agregar Nuevo Lugar
+formValidatorAddNewPlace.enableValidation();
+
+//Constantes requeridas para los detectores de eventos
 const popupShowImage = document.querySelector("#popup__show-image");
 const closeShowImageButton = document.querySelector(
   ".popup__label-close-button"
 );
-
-const content = document.querySelector(".content");
-const profileName = content.querySelector(".content__profile-name");
-const aboutMe = content.querySelector(".content__about-me");
 const EditProfileButton = content.querySelector(
   ".content__profile-edit-button"
 );
 const addNewPlaceButton = content.querySelector(
   ".content__new-place-add-button"
 );
-const cardsContainer = document.querySelector(".content__images");
-
-const formEditProfile = document.forms.formEditProfile;
-const formAddNewPlace = document.forms.formAddNewPlace;
-const fieldName = document.forms.formEditProfile.elements.fieldName;
-const fieldAboutMe = document.forms.formEditProfile.elements.fieldAboutMe;
 const closeEditProfileButton = document.querySelector(
   "#form__close-edit-profile-button"
 );
-const fieldTitle = document.forms.formAddNewPlace.elements.fieldTitle;
-const fieldLinkImage = document.forms.formAddNewPlace.elements.fieldLinkImage;
 const closeAddNewPlaceButton = document.querySelector(
   "#form__close-add-new-place-button"
 );
 
-const initialCards = [
-  {
-    name: "Valle de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/yosemite.jpg",
-  },
-  {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lake-louise.jpg",
-  },
-  {
-    name: "Montañas Calvas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/latemar.jpg",
-  },
-  {
-    name: "Parque Nacional de la Vanoise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
-  },
-];
-
-//Crea una carta
-function createCard(card) {
-  const cardTemplate = document.querySelector("#card-template").content;
-  const cardElement = cardTemplate
-    .querySelector(".content__card")
-    .cloneNode(true);
-  const LikeButton = cardElement.querySelector(".content__like-button-label");
-  const DeleteButton = cardElement.querySelector(
-    ".content__delete-button-label"
-  );
-  const cardImage = cardElement.querySelector(".content__image");
-  cardElement.querySelector(".content__image-title").textContent = card.name;
-  cardElement.querySelector(".content__image").src = card.link;
-  cardElement.querySelector(".content__image").alt = card.name;
-
-  //Detector de evento click para el activar/desactivar el botón Like de la carta
-  LikeButton.addEventListener("click", function () {
-    LikeButton.classList.toggle("content__like-button-label-active");
-  });
-
-  //Detector de evento click para eliminar la carta
-  DeleteButton.addEventListener("click", function () {
-    cardElement.remove();
-  });
-
-  //Detector de evento click para mostrar imagen
-  cardImage.addEventListener("click", function () {
-    const popupImage = document.querySelector("#popup__show-image");
-    const image = popupImage.querySelector(".popup__image");
-    const text = popupImage.querySelector(".popup__title-image");
-    popupImage.classList.add("popup__open");
-    image.src = card.link;
-    image.alt = card.name;
-    text.textContent = card.name;
-  });
-  return cardElement;
-}
-
-//Manejadores de eventos para abrir formularios
-function handleOpenPopupEditProfile() {
-  const buttonElement = formEditProfile.querySelector(".form__button");
-  buttonElement.removeAttribute("disabled");
-  buttonElement.classList.remove("form__button-disabled");
-  popupEditProfile.classList.add("popup__open");
-  fieldName.value = profileName.textContent;
-  fieldAboutMe.value = aboutMe.textContent;
-}
-
-function handleOpenPopupAddNewPlace() {
-  popupAddNewPlace.classList.add("popup__open");
-}
-
-//Manejadores de eventos para cerrar formularios y la vista de la imagen
-function handleClosePopupEditProfile() {
-  popupEditProfile.classList.remove("popup__open");
-  resetValidation(formEditProfile);
-}
-
-function handleClosePopupAddNewPlace() {
-  popupAddNewPlace.classList.remove("popup__open");
-  resetValidation(formAddNewPlace);
-  formAddNewPlace.reset();
-}
-
-function handleClosePopupShowImage(evt) {
-  evt.target.closest(".popup").classList.remove("popup__open");
-}
-
-//Manejadores de eventos para enviar la información del formulario
-function handleEditProfileFormSubmit(evt) {
-  evt.preventDefault();
-  profileName.textContent = fieldName.value;
-  aboutMe.textContent = fieldAboutMe.value;
-  handleClosePopupEditProfile();
-}
-
-function handleAddNewPlaceFormSubmit(evt) {
-  evt.preventDefault();
-  const card = { name: fieldTitle.value, link: fieldLinkImage.value };
-  cardsContainer.prepend(createCard(card));
-  fieldTitle.value = "";
-  fieldLinkImage.value = "";
-  handleClosePopupAddNewPlace();
-}
-
-//Detectores de eventos click en el exterior del formulario para cerrarlo
+//Detectores de eventos click para cerrar el formulario y la vista de la imagen
+//dando click fuera de ellos
 popupEditProfile.addEventListener("click", function (evt) {
   if (evt.target.classList.contains("popup")) {
     handleClosePopupEditProfile();
@@ -160,7 +134,7 @@ popupShowImage.addEventListener("click", function (evt) {
   }
 });
 
-//Detector de eventos tecla ESC para cerrar formularios y vista de la imagen
+//Detector de eventos con la tecla ESC para cerrar los formularios y vista de la imagen
 document.addEventListener("keydown", function (evt) {
   const elementPopup = document.querySelector(".popup__open");
   if (evt.key === "Escape") {
@@ -179,19 +153,17 @@ EditProfileButton.addEventListener("click", handleOpenPopupEditProfile);
 
 addNewPlaceButton.addEventListener("click", handleOpenPopupAddNewPlace);
 
-//Detectores de eventos click para cerrar formularios y vista de imagen con el boton cerrar
+//Detectores de eventos click para cerrar los formularios y la vista de imagen
+//con el boton cerrar
 closeEditProfileButton.addEventListener("click", handleClosePopupEditProfile);
 
 closeAddNewPlaceButton.addEventListener("click", handleClosePopupAddNewPlace);
 
 closeShowImageButton.addEventListener("click", handleClosePopupShowImage);
 
-//Detectores de eventos click para enviar información del formulario
+//Detectores de eventos click para enviar la información de los formularios
 formEditProfile.addEventListener("submit", handleEditProfileFormSubmit);
 
 formAddNewPlace.addEventListener("submit", handleAddNewPlaceFormSubmit);
 
-//Inicialización de las cartas
-initialCards.forEach((card) => {
-  cardsContainer.append(createCard(card));
-});
+export { formValidatorEditProfile, formValidatorAddNewPlace };
