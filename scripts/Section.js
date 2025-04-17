@@ -1,3 +1,4 @@
+//La clase Section renderiza una lista de elementos en una página.
 export default class Section {
   constructor({ items, renderer }, containerSelector) {
     this._initialArray = items;
