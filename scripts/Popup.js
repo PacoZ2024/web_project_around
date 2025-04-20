@@ -20,8 +20,9 @@ export default class Popup {
     });
   }
   setEventListeners() {
+    //Modificar la clase form por popup
     const closeButton = this._selectorPopup.querySelector(
-      ".popup__label-close-button" //Modificar para imagen .popup__label-close-button
+      ".form__label-close-button"
     );
     //Detector de eventos click para cerrar con el botón X
     closeButton.addEventListener("click", () => {
