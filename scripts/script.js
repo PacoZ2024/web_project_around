@@ -1,6 +1,8 @@
 import PopupWithForm from "./PopupWithForm.js";
-import PopupWithImage from "./PopupWithImage.js";
+import UserInfo from "./UserInfo.js";
+//import PopupWithImage from "./PopupWithImage.js";
 
+//Popup con imagen
 //const popupImage = new PopupWithImage("#popup__show-image", {
 //  title: "Lago di Braies",
 //  image:
@@ -11,18 +13,17 @@ import PopupWithImage from "./PopupWithImage.js";
 //popupImage._handleEscClose();
 //popupImage.setEventListeners();
 
+//Popup Formulario Editar Perfil
 const popupEditProfile = new PopupWithForm(
   "#popup__edit-profile",
   function asigna(inputsValuesFormEditProfile) {
-    const content = document.querySelector(".content");
-    const profileName = content.querySelector(".content__profile-name");
-    const aboutMe = content.querySelector(".content__about-me");
-    profileName.textContent = inputsValuesFormEditProfile[0].value;
-    aboutMe.textContent = inputsValuesFormEditProfile[1].value;
+    const dataUser = new UserInfo(
+      inputsValuesFormEditProfile[0].value,
+      inputsValuesFormEditProfile[1].value
+    );
+    dataUser.setUserInfo();
   }
 );
-popupEditProfile.open();
-popupEditProfile._handleEscClose();
 popupEditProfile.setEventListeners();
 
 const content = document.querySelector(".content");
