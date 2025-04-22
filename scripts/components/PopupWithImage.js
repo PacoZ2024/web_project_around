@@ -16,4 +16,14 @@ export default class PopupWithImage extends Popup {
     image.alt = this._title;
     text.textContent = this._title;
   }
+  setEventListeners() {
+    super.setEventListeners();
+    const closeButton = this._selectorPopup.querySelector(
+      ".popup__label-close-button"
+    );
+    //Detector de eventos click para cerrar con el botón X
+    closeButton.addEventListener("click", () => {
+      super.close();
+    });
+  }
 }

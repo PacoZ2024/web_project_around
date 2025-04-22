@@ -11,12 +11,19 @@ export default class PopupWithForm extends Popup {
   }
   setEventListeners() {
     super.setEventListeners();
+    const closeButton = this._selectorPopup.querySelector(
+      ".form__label-close-button"
+    );
     const form = this._selectorPopup.querySelector(".form");
+    //Detector de eventos click para cerrar con el botón X
+    closeButton.addEventListener("click", () => {
+      this.close();
+    });
     //Detector de eventos click para enviar la información del formulario
     form.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._sender(this._getInputValues());
-      super.close();
+      this.close();
     });
   }
   close() {

@@ -1,3 +1,5 @@
+import PopupWithImage from "./PopupWithImage.js";
+
 //Clase Card crea una carta para renderizar cuenta con métodos para dar like, eliminar
 //o mostrar su vista previa; así como para obtener la plantilla del código HTML.
 export default class Card {

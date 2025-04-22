@@ -1,17 +1,17 @@
 import PopupWithForm from "./PopupWithForm.js";
 import UserInfo from "./UserInfo.js";
-//import PopupWithImage from "./PopupWithImage.js";
+import PopupWithImage from "./PopupWithImage.js";
 
 //Popup con imagen
-//const popupImage = new PopupWithImage("#popup__show-image", {
-//  title: "Lago di Braies",
-//  image:
-//    "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
-//});
+const popupImage = new PopupWithImage("#popup__show-image", {
+  title: "Lago di Braies",
+  image:
+    "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
+});
 
-//popupImage.open();
-//popupImage._handleEscClose();
-//popupImage.setEventListeners();
+popupImage.open();
+popupImage._handleEscClose();
+popupImage.setEventListeners();
 
 //Popup Formulario Editar Perfil
 const popupEditProfile = new PopupWithForm(

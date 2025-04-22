@@ -1,5 +1,5 @@
 import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
+import FormValidator from "../components/FormValidator.js";
 import {
   popupEditProfile,
   popupAddNewPlace,
@@ -13,7 +13,7 @@ import {
   handleClosePopupShowImage,
   handleEditProfileFormSubmit,
   handleAddNewPlaceFormSubmit,
-} from "./utils.js";
+} from "../utils/utils.js";
 
 //Datos para inicializar el perfil con seis cartas preestablecidas.
 const initialCards = [
