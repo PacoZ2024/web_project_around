@@ -1,3 +1,8 @@
+const content = document.querySelector(".content");
+export const EditProfileButton = content.querySelector(
+  ".content__profile-edit-button"
+);
+
 //Datos para inicializar el perfil con seis cartas preestablecidas.
 export const initialCards = [
   {

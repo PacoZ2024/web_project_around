@@ -18,6 +18,8 @@ export default class Popup {
     });
   }
   setEventListeners() {
+    this._handleEscClose();
+
     //Detector de eventos click para cerrar dando click fuera del popup
     this._selectorPopup.addEventListener("click", (evt) => {
       if (evt.target.classList.contains("popup")) {
