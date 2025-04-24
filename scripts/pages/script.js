@@ -14,6 +14,7 @@ import UserInfo from "../components/UserInfo.js";
 import {
   activeButtonEditProfile,
   showInputsFormEditProfile,
+  disabledButtonAddNewPlace,
 } from "../utils/utilidades.js";
 
 //Objeto para renderizar el perfil con las seis cartas iniciales
@@ -99,5 +100,6 @@ popupFormAddNewPlace.setEventListeners();
 
 //Detector de eventos click para abrir el formulario Agregar Nuevo Lugar
 addNewPlaceButton.addEventListener("click", () => {
+  disabledButtonAddNewPlace();
   popupFormAddNewPlace.open();
 });

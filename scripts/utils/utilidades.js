@@ -1,11 +1,20 @@
 const formEditProfile = document.forms.formEditProfile;
+const formAddNewPlace = document.forms.formAddNewPlace;
 const fieldName = document.forms.formEditProfile.elements.fieldName;
 const fieldAboutMe = document.forms.formEditProfile.elements.fieldAboutMe;
-const buttonElement = formEditProfile.querySelector(".form__button");
+const buttonSubmitFormEditProfile =
+  formEditProfile.querySelector(".form__button");
+const buttonSubmitFormAddNewPlace =
+  formAddNewPlace.querySelector(".form__button");
 
 function activeButtonEditProfile() {
-  buttonElement.removeAttribute("disabled");
-  buttonElement.classList.remove("form__button-disabled");
+  buttonSubmitFormEditProfile.removeAttribute("disabled");
+  buttonSubmitFormEditProfile.classList.remove("form__button-disabled");
+}
+
+function disabledButtonAddNewPlace() {
+  buttonSubmitFormAddNewPlace.disabled = true;
+  buttonSubmitFormAddNewPlace.classList.add("form__button-disabled");
 }
 
 function showInputsFormEditProfile(data) {
@@ -13,4 +22,8 @@ function showInputsFormEditProfile(data) {
   fieldAboutMe.value = data.aboutMe;
 }
 
-export { activeButtonEditProfile, showInputsFormEditProfile };
+export {
+  activeButtonEditProfile,
+  showInputsFormEditProfile,
+  disabledButtonAddNewPlace,
+};
