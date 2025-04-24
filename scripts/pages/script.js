@@ -11,6 +11,10 @@ import {
 import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import {
+  activeButtonEditProfile,
+  showInputsFormEditProfile,
+} from "../utils/utilidades.js";
 
 //Objeto para renderizar el perfil con las seis cartas iniciales
 const cardSection = new Section(
@@ -56,7 +60,9 @@ popupFormEditProfile.setEventListeners();
 
 //Detector de eventos click para abrir el formulario Editar Perfil
 editProfileButton.addEventListener("click", () => {
+  activeButtonEditProfile();
   popupFormEditProfile.open();
+  showInputsFormEditProfile(dataUser.getUserInfo());
 });
 
 //FORMULARIO AGREGAR NUEVO LUGAR-----------------------------------------------------------
