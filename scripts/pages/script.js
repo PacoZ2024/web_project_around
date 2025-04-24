@@ -1,6 +1,13 @@
 import Section from "../components/Section.js";
 import Card from "../components/Card.js";
-import { initialCards, EditProfileButton } from "../utils/constants.js";
+import {
+  initialCards,
+  cardsContainer,
+  editProfileButton,
+  addNewPlaceButton,
+  settingsFormEditProfile,
+  settingsFormAddNewPlace,
+} from "../utils/constants.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
@@ -21,49 +28,16 @@ const cardSection = new Section(
 //Método para renderizar las cartas iniciales
 cardSection.renderItems();
 
-//Configuración para la validación del formulario Editar Perfil
-const settingsFormEditProfile = {
-  settings: {
-    inputSelector: ".form__field",
-    submitButtonSelector: ".form__button",
-    inactiveButtonClass: "form__button-disabled",
-    inputErrorClass: "form__field_type_error",
-    errorClass: "form__field-error_active",
-  },
-  formSelector: "#form__edit-profile",
-};
+//FORMULARIO EDITAR PERFIL-----------------------------------------------------------------
 
-//Creando un objeto para la validación del formulario Editar Perfil
+//Objeto para la validación del formulario Editar Perfil
 const formValidatorEditProfile = new FormValidator(
   settingsFormEditProfile.settings,
   settingsFormEditProfile.formSelector
 );
 
-//Ejecutando la validación para el formulario Editar Perfil
+//Método de validación para el formulario Editar Perfil
 formValidatorEditProfile.enableValidation();
-
-//Configuración para la validación del formulario Agregar Nuevo Lugar
-const settingsFormAddNewPlace = {
-  settings: {
-    inputSelector: ".form__field",
-    submitButtonSelector: ".form__button",
-    inactiveButtonClass: "form__button-disabled",
-    inputErrorClass: "form__field_type_error",
-    errorClass: "form__field-error_active",
-  },
-  formSelector: "#form__add-new-place",
-};
-
-//Creando un objeto para la validación del formulario Agregar Nuevo Lugar
-const formValidatorAddNewPlace = new FormValidator(
-  settingsFormAddNewPlace.settings,
-  settingsFormAddNewPlace.formSelector
-);
-
-//Ejecutando la validación para el formulario Agregar Nuevo Lugar
-formValidatorAddNewPlace.enableValidation();
-
-//------------------------------------------------------------------------------------------------------
 
 //Objeto para la información del usuario
 const dataUser = new UserInfo(".content__profile-name", ".content__about-me");
@@ -81,6 +55,43 @@ const popupFormEditProfile = new PopupWithForm(
 popupFormEditProfile.setEventListeners();
 
 //Detector de eventos click para abrir el formulario Editar Perfil
-EditProfileButton.addEventListener("click", () => {
+editProfileButton.addEventListener("click", () => {
   popupFormEditProfile.open();
+});
+
+//FORMULARIO AGREGAR NUEVO LUGAR-----------------------------------------------------------
+
+//Creando un objeto para la validación del formulario Agregar Nuevo Lugar
+const formValidatorAddNewPlace = new FormValidator(
+  settingsFormAddNewPlace.settings,
+  settingsFormAddNewPlace.formSelector
+);
+
+//Ejecutando la validación para el formulario Agregar Nuevo Lugar
+formValidatorAddNewPlace.enableValidation();
+
+//Objeto para el formulario Agregar Nuevo Lugar
+const popupFormAddNewPlace = new PopupWithForm(
+  "#popup__add-new-place",
+  (inputsValues) => {
+    const card = new Card(
+      {
+        title: inputsValues[0].value,
+        image: inputsValues[1].value,
+      },
+      "#card-template"
+    );
+    const cardElement = card.generateCard();
+    cardsContainer.prepend(cardElement);
+  }
+);
+
+//Método para cerrar el formulario Agregar Nuevo Lugar dando click fuera del formulario,
+//con el botón "X" y con la tecla Esc; además envia la información al complementarla
+//correctamente
+popupFormAddNewPlace.setEventListeners();
+
+//Detector de eventos click para abrir el formulario Agregar Nuevo Lugar
+addNewPlaceButton.addEventListener("click", () => {
+  popupFormAddNewPlace.open();
 });
