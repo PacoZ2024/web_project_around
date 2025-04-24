@@ -61,6 +61,7 @@ popupFormEditProfile.setEventListeners();
 
 //Detector de eventos click para abrir el formulario Editar Perfil
 editProfileButton.addEventListener("click", () => {
+  formValidatorEditProfile.resetValidation();
   activeButtonEditProfile();
   popupFormEditProfile.open();
   showInputsFormEditProfile(dataUser.getUserInfo());
@@ -100,6 +101,7 @@ popupFormAddNewPlace.setEventListeners();
 
 //Detector de eventos click para abrir el formulario Agregar Nuevo Lugar
 addNewPlaceButton.addEventListener("click", () => {
+  formValidatorAddNewPlace.resetValidation();
   disabledButtonAddNewPlace();
   popupFormAddNewPlace.open();
 });
