@@ -1,10 +1,11 @@
 //Clase Card crea una carta para renderizar cuenta con métodos para dar like, eliminar
 //o mostrar su vista previa; así como para obtener la plantilla del código HTML.
 export default class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._title = data.title;
     this._image = data.image;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
   _getTemplate() {
     const cardElement = document
@@ -39,18 +40,8 @@ export default class Card {
     this._element
       .querySelector(".content__image")
       .addEventListener("click", () => {
-        this._handleShowImage();
+        this._handleCardClick();
       });
-  }
-  //Manejador de eventos para mostrar una carta
-  _handleShowImage() {
-    const popupImage = document.querySelector("#popup__show-image");
-    const image = popupImage.querySelector(".popup__image");
-    const text = popupImage.querySelector(".popup__title-image");
-    popupImage.classList.add("popup__open");
-    image.src = this._image;
-    image.alt = this._title;
-    text.textContent = this._title;
   }
   //Manejador de eventos para eliminar una carta
   _handleDeleteCard() {

@@ -10,6 +10,7 @@ import {
 } from "../utils/constants.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
 import {
   activeButtonEditProfile,
@@ -22,7 +23,9 @@ const cardSection = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const card = new Card(item, "#card-template");
+      const card = new Card(item, "#card-template", () => {
+        popupCardImage.open(item.image, item.title);
+      });
       const cardElement = card.generateCard();
       cardSection.addItem(cardElement);
     },
@@ -32,6 +35,13 @@ const cardSection = new Section(
 
 //Método para renderizar las cartas iniciales
 cardSection.renderItems();
+
+//Objeto para la visualización de la imagen
+const popupCardImage = new PopupWithImage("#popup__show-image");
+
+//Método para cerrar la vista de la imagen dando click fuera del formulario, con el
+//botón "X" y con la tecla Esc
+popupCardImage.setEventListeners();
 
 //FORMULARIO EDITAR PERFIL-----------------------------------------------------------------
 
@@ -82,12 +92,17 @@ formValidatorAddNewPlace.enableValidation();
 const popupFormAddNewPlace = new PopupWithForm(
   "#popup__add-new-place",
   (inputsValues) => {
+    const title = inputsValues[0].value;
+    const image = inputsValues[1].value;
     const card = new Card(
       {
-        title: inputsValues[0].value,
-        image: inputsValues[1].value,
+        title: title,
+        image: image,
       },
-      "#card-template"
+      "#card-template",
+      () => {
+        popupCardImage.open(image, title);
+      }
     );
     const cardElement = card.generateCard();
     cardsContainer.prepend(cardElement);
