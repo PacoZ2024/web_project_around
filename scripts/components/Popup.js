@@ -1,4 +1,3 @@
-//La clase Popup abre y cierra la ventana emergente.
 export default class Popup {
   constructor(selectorPopup) {
     this._selectorPopup = document.querySelector(selectorPopup);
@@ -9,7 +8,7 @@ export default class Popup {
   close() {
     this._selectorPopup.classList.remove("popup__open");
   }
-  //Método para cerrar el popup con la tecla Esc
+
   _handleEscClose() {
     document.addEventListener("keydown", (evt) => {
       if (evt.key === "Escape") {
@@ -20,7 +19,6 @@ export default class Popup {
   setEventListeners() {
     this._handleEscClose();
 
-    //Detector de eventos click para cerrar dando click fuera del popup
     this._selectorPopup.addEventListener("click", (evt) => {
       if (evt.target.classList.contains("popup")) {
         this.close();

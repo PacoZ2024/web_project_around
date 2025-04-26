@@ -1,6 +1,3 @@
-//Clase FormValidator su función es validar el formulario de acuerdo con las especificaciones
-//de cada entrada, también cuenta con el método resetValidation para resetearlo después de
-//cerrarlo o enviar la información.
 export default class FormValidator {
   constructor(settings, formSelector) {
     this._settings = settings;

@@ -7,7 +7,6 @@ export const addNewPlaceButton = content.querySelector(
   ".content__new-place-add-button"
 );
 
-//Datos para inicializar el perfil con seis cartas preestablecidas.
 export const initialCards = [
   {
     title: "Valle de Yosemite",
@@ -41,7 +40,6 @@ export const initialCards = [
   },
 ];
 
-//Configuración para la validación del formulario Editar Perfil
 export const settingsFormEditProfile = {
   settings: {
     inputSelector: ".form__field",
@@ -53,7 +51,6 @@ export const settingsFormEditProfile = {
   formSelector: "#form__edit-profile",
 };
 
-//Configuración para la validación del formulario Agregar Nuevo Lugar
 export const settingsFormAddNewPlace = {
   settings: {
     inputSelector: ".form__field",

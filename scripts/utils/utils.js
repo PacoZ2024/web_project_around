@@ -22,8 +22,17 @@ function showInputsFormEditProfile(data) {
   fieldAboutMe.value = data.aboutMe;
 }
 
+function removeEventListener() {
+  const closeButton = document.querySelector(".popup__label-close-button");
+  closeButton.addEventListener("click", () => {
+    const popupImage = document.querySelector(".popup__open");
+    popupImage.classList.remove("popup__open");
+  });
+}
+
 export {
   activeButtonEditProfile,
   showInputsFormEditProfile,
   disabledButtonAddNewPlace,
+  removeEventListener,
 };

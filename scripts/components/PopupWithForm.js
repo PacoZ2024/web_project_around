@@ -16,11 +16,10 @@ export default class PopupWithForm extends Popup {
       ".form__label-close-button"
     );
 
-    //Detector de eventos click para cerrar con el botón X
     closeButton.addEventListener("click", () => {
       this.close();
     });
-    //Detector de eventos click para enviar la información del formulario
+
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._sender(this._getInputValues());
