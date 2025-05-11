@@ -1,7 +1,7 @@
 export default class Card {
   constructor(data, cardSelector, handleCardClick) {
-    this._title = data.title;
-    this._image = data.image;
+    this._name = data.name;
+    this._link = data.link;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
   }
@@ -14,10 +14,10 @@ export default class Card {
   }
   generateCard() {
     this._element = this._getTemplate();
-    this._element.querySelector(".content__image").src = this._image;
-    this._element.querySelector(".content__image").alt = this._title;
+    this._element.querySelector(".content__image").src = this._link;
+    this._element.querySelector(".content__image").alt = this._name;
     this._element.querySelector(".content__image-title").textContent =
-      this._title;
+      this._name;
     this._setEventListeners();
     return this._element;
   }

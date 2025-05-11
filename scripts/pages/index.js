@@ -1,7 +1,6 @@
 import Section from "../components/Section.js";
 import Card from "../components/Card.js";
 import {
-  initialCards,
   cardsContainer,
   editProfileButton,
   addNewPlaceButton,
@@ -18,22 +17,38 @@ import {
   disabledButtonAddNewPlace,
   removeEventListener,
 } from "../utils/utils.js";
+import Api from "../components/Api.js";
 
-const cardSection = new Section(
-  {
-    items: initialCards,
-    renderer: (item) => {
-      const card = new Card(item, "#card-template", () => {
-        popupCardImage.open(item.image, item.title);
-      });
-      const cardElement = card.generateCard();
-      cardSection.addItem(cardElement);
-    },
+const api = new Api({
+  baseUrl: "https://around-api.es.tripleten-services.com/v1",
+  headers: {
+    authorization: "c7ddeb73-151f-41a7-9f67-d93995416067",
+    "Content-Type": "application/json",
   },
-  ".content__images"
-);
+});
 
-cardSection.renderItems();
+api
+  .getInitialCards()
+  .then((result) => {
+    console.log(result);
+    const cardSection = new Section(
+      {
+        items: result,
+        renderer: (item) => {
+          const card = new Card(item, "#card-template", () => {
+            popupCardImage.open(item.link, item.name);
+          });
+          const cardElement = card.generateCard();
+          cardSection.addItem(cardElement);
+        },
+      },
+      ".content__images"
+    );
+    cardSection.renderItems();
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 const popupCardImage = new PopupWithImage("#popup__show-image");
 
