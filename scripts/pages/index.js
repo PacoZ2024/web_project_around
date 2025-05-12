@@ -99,16 +99,16 @@ formValidatorAddNewPlace.enableValidation();
 const popupFormAddNewPlace = new PopupWithForm(
   "#popup__add-new-place",
   (inputsValues) => {
-    const title = inputsValues[0].value;
-    const image = inputsValues[1].value;
+    const name = inputsValues[0].value;
+    const link = inputsValues[1].value;
     const card = new Card(
       {
-        title: title,
-        image: image,
+        name: name,
+        link: link,
       },
       "#card-template",
       () => {
-        popupCardImage.open(image, title);
+        popupCardImage.open(link, name);
       }
     );
     const cardElement = card.generateCard();

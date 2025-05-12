@@ -12,8 +12,8 @@
 }
 
 .content__avatar-image {
-  clip-path: circle(37px);
-  max-width: 120px;
+  clip-path: circle(60px);
+  max-height: 120px;
   border-radius: 100%;
 }
 
@@ -194,6 +194,10 @@
     flex-wrap: wrap;
     row-gap: 30px;
     justify-content: center;
+  }
+
+  .content__profile-info {
+    margin: 0 auto;
   }
 
   .content__new-place-add-button {
