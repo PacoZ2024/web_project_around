@@ -175,7 +175,6 @@
 
 .content__like-button-label:hover {
   cursor: pointer;
-  opacity: 0.5;
 }
 
 .content__like-button-label-active {
