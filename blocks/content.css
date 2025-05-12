@@ -12,6 +12,7 @@
 }
 
 .content__avatar-image {
+  clip-path: circle(37px);
   max-width: 120px;
   border-radius: 100%;
 }

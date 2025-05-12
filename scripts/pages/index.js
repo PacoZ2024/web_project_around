@@ -30,7 +30,6 @@ const api = new Api({
 api
   .getInitialCards()
   .then((result) => {
-    console.log(result);
     const cardSection = new Section(
       {
         items: result,
@@ -63,6 +62,16 @@ const formValidatorEditProfile = new FormValidator(
 formValidatorEditProfile.enableValidation();
 
 const dataUser = new UserInfo(".content__profile-name", ".content__about-me");
+
+api
+  .getProfile()
+  .then((result) => {
+    dataUser.setUserInfo(result.name, result.about);
+    document.querySelector(".content__avatar-image").src = result.avatar;
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 const popupFormEditProfile = new PopupWithForm(
   "#popup__edit-profile",
