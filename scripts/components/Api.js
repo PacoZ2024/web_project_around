@@ -1,10 +1,12 @@
 export default class Api {
   constructor(options) {
-    this.options = options;
+    this.baseUrl = options.baseUrl;
+    this.headers = options.headers;
   }
+
   getInitialCards() {
-    return fetch("https://around-api.es.tripleten-services.com/v1/cards/", {
-      headers: { authorization: "c7ddeb73-151f-41a7-9f67-d93995416067" },
+    return fetch(`${this.baseUrl}/cards/`, {
+      headers: this.headers,
     }).then((res) => {
       if (res.ok) {
         return res.json();
@@ -12,9 +14,23 @@ export default class Api {
       return Promise.reject(`Error: ${res.status}`);
     });
   }
+
   getProfile() {
-    return fetch("https://around-api.es.tripleten-services.com/v1/users/me", {
-      headers: { authorization: "c7ddeb73-151f-41a7-9f67-d93995416067" },
+    return fetch(`${this.baseUrl}/users/me`, {
+      headers: this.headers,
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
+
+  editProfile(nameProfile, aboutProfile) {
+    return fetch(`${this.baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: this.headers,
+      body: JSON.stringify({ name: nameProfile, about: aboutProfile }),
     }).then((res) => {
       if (res.ok) {
         return res.json();

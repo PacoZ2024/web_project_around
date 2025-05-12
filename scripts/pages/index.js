@@ -76,7 +76,14 @@ api
 const popupFormEditProfile = new PopupWithForm(
   "#popup__edit-profile",
   (inputsValues) => {
-    dataUser.setUserInfo(inputsValues[0].value, inputsValues[1].value);
+    api
+      .editProfile(inputsValues[0].value, inputsValues[1].value)
+      .then((result) => {
+        dataUser.setUserInfo(result.name, result.about);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 );
 
