@@ -38,4 +38,17 @@ export default class Api {
       return Promise.reject(`Error: ${res.status}`);
     });
   }
+
+  addNewPlace(title, image) {
+    return fetch(`${this.baseUrl}/cards/`, {
+      method: "POST",
+      headers: this.headers,
+      body: JSON.stringify({ name: title, link: image }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
 }
