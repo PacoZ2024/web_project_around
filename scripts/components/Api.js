@@ -51,4 +51,30 @@ export default class Api {
       return Promise.reject(`Error: ${res.status}`);
     });
   }
+
+  isLiked(idCard) {
+    return fetch(`${this.baseUrl}/cards/${idCard}/likes`, {
+      method: "PUT",
+      headers: this.headers,
+      body: JSON.stringify({ isLiked: true }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
+
+  deleteLiked(idCard){
+    return fetch(`${this.baseUrl}/cards/${idCard}/likes`, {
+      method: "DELETE",
+      headers: this.headers,
+      body: JSON.stringify({ isLiked: false }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
 }

@@ -110,7 +110,12 @@ const popupFormAddNewPlace = new PopupWithForm(
       .addNewPlace(inputsValues[0].value, inputsValues[1].value)
       .then((result) => {
         const card = new Card(
-          { name: result.name, link: result.link },
+          {
+            _id: result._id,
+            name: result.name,
+            link: result.link,
+            isLiked: result.isLiked,
+          },
           "#card-template",
           () => {
             popupCardImage.open(result.link, result.name);
