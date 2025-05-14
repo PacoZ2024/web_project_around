@@ -110,6 +110,12 @@
   position: relative;
 }
 
+.content__image-card {
+  width: 282px;
+  height: 282px;
+  border-radius: 10px 10px 0px 0px;
+}
+
 .content__image {
   width: 282px;
   height: 282px;
