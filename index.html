@@ -19,7 +19,7 @@
           name="formEditProfile"
           novalidate
         >
-          <div class="form__close-button" id="form__close-edit-profile-button">
+          <div class="form__close-button">
             <img
               class="form__label-close-button"
               src="./images/Close_button.svg"
@@ -61,7 +61,7 @@
           name="formAddNewPlace"
           novalidate
         >
-          <div class="form__close-button" id="form__close-add-new-place-button">
+          <div class="form__close-button">
             <img
               class="form__label-close-button"
               src="./images/Close_button.svg"
@@ -73,7 +73,6 @@
             <input
               id="title-input"
               class="form__field form__field-title"
-              name="fieldTitle"
               type="text"
               placeholder="Título"
               minlength="2"
@@ -84,13 +83,40 @@
             <input
               id="link-image"
               class="form__field form__field-link-image"
-              name="fieldLinkImage"
               type="url"
               placeholder="Enlace a la imagen"
               required
             />
             <span class="link-image-error form__field-error"></span>
             <button class="form__button" type="submit">Crear</button>
+          </fieldset>
+        </form>
+      </div>
+      <div class="popup" id="popup__edit-image-profile">
+        <form
+          class="form"
+          id="form__edit-image-profile"
+          name="formEditImageProfile"
+          novalidate
+        >
+          <div class="form__close-button">
+            <img
+              class="form__label-close-button"
+              src="./images/Close_button.svg"
+              alt="Botón cerrar formulario para editar imagen de perfil"
+            />
+          </div>
+          <fieldset class="form__content">
+            <legend class="form__title">Cambiar foto de perfil</legend>
+            <input
+              id="link-image-profile"
+              class="form__field form__field-link-image-profile"
+              type="url"
+              placeholder="Enlace a la imagen"
+              required
+            />
+            <span class="link-image-profile-error form__field-error"></span>
+            <button class="form__button" type="submit">Guardar</button>
           </fieldset>
         </form>
       </div>
@@ -118,7 +144,16 @@
       </header>
       <main class="content">
         <section class="content__profile">
-          <img class="content__avatar-image" alt="Imagen de perfil" />
+          <div class="content__image-profile-container">
+            <img class="content__avatar-image" alt="Imagen de perfil" />
+            <div class="content__icon-edit-image-profile-container">
+              <img
+                class="content__icon-edit-image-profile"
+                src="./images/Edit_Image_Profile.svg"
+                alt="Icono para editar imagen de perfil"
+              />
+            </div>
+          </div>
           <div class="content__profile-info">
             <div class="content__profile-distribution">
               <h1 class="content__profile-name"></h1>

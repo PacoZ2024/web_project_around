@@ -79,6 +79,14 @@
   margin: 0 0 7px;
 }
 
+#form__edit-image-profile {
+  height: 272px;
+}
+
+.form__field-link-image-profile {
+  margin: 54px 0 7px;
+}
+
 .form__field_type_error {
   border-bottom: 1px solid #ff0000;
 }

@@ -65,11 +65,24 @@ export default class Api {
     });
   }
 
-  deleteLiked(idCard){
+  deleteLiked(idCard) {
     return fetch(`${this.baseUrl}/cards/${idCard}/likes`, {
       method: "DELETE",
       headers: this.headers,
       body: JSON.stringify({ isLiked: false }),
+    }).then((res) => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Error: ${res.status}`);
+    });
+  }
+
+  editImageProfile(link) {
+    return fetch(`${this.baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this.headers,
+      body: JSON.stringify({ avatar: link }),
     }).then((res) => {
       if (res.ok) {
         return res.json();
