@@ -4,26 +4,33 @@ export default class Api {
     this.headers = options.headers;
   }
 
-  getInitialCards() {
-    return fetch(`${this.baseUrl}/cards/`, {
+  getInfoProfileUser() {
+    const cardsPromise = fetch(`${this.baseUrl}/cards/`, {
       headers: this.headers,
     }).then((res) => {
       if (res.ok) {
         return res.json();
       }
-      return Promise.reject(`Error: ${res.status}`);
+      return Promise.reject(`Error al cargar las cartas: ${res.status}`);
     });
-  }
-
-  getProfile() {
-    return fetch(`${this.baseUrl}/users/me`, {
+    const userInfoPromise = fetch(`${this.baseUrl}/users/me`, {
       headers: this.headers,
     }).then((res) => {
       if (res.ok) {
         return res.json();
       }
-      return Promise.reject(`Error: ${res.status}`);
+      return Promise.reject(
+        `Error al cargar la información del usuario: ${res.status}`
+      );
     });
+    const promises = [userInfoPromise, cardsPromise];
+    return Promise.all(promises)
+      .then((results) => {
+        return results;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   editProfile(nameProfile, aboutProfile) {

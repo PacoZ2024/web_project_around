@@ -97,37 +97,24 @@ const popupFormEditImageProfile = new PopupWithForm(
   }
 );
 
-api
-  .getInitialCards()
-  .then((result) => {
-    const cardSection = new Section(
-      {
-        items: result,
-        renderer: (item) => {
-          const card = new Card(item, "#card-template", () => {
-            popupCardImage.open(item.link, item.name);
-          });
-          const cardElement = card.generateCard();
-          cardSection.addItem(cardElement);
-        },
+api.getInfoProfileUser().then((result) => {
+  dataUser.setUserInfo(result[0].name, result[0].about);
+  editImageProfile.src = result[0].avatar;
+  const cardSection = new Section(
+    {
+      items: result[1],
+      renderer: (item) => {
+        const card = new Card(item, "#card-template", () => {
+          popupCardImage.open(item.link, item.name);
+        });
+        const cardElement = card.generateCard();
+        cardSection.addItem(cardElement);
       },
-      ".content__images"
-    );
-    cardSection.renderItems();
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
-api
-  .getProfile()
-  .then((result) => {
-    dataUser.setUserInfo(result.name, result.about);
-    editImageProfile.src = result.avatar;
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+    },
+    ".content__images"
+  );
+  cardSection.renderItems();
+});
 
 popupCardImage.setEventListeners();
 popupFormEditProfile.setEventListeners();
