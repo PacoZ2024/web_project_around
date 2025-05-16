@@ -61,6 +61,7 @@ export default class Card {
     api
       .deleteCard(this._id)
       .then((result) => {
+        console.log(result.message);
         this._element.remove();
       })
       .catch((err) => {
