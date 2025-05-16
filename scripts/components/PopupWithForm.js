@@ -22,6 +22,7 @@ export default class PopupWithForm extends Popup {
 
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
+      this._form.querySelector(".form__button").textContent = "Guardando...";
       this._sender(this._getInputValues());
       this.close();
     });

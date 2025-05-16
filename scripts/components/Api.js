@@ -69,7 +69,6 @@ export default class Api {
     return fetch(`${this.baseUrl}/cards/${idCard}/likes`, {
       method: "DELETE",
       headers: this.headers,
-      body: JSON.stringify({ isLiked: false }),
     }).then((res) => {
       if (res.ok) {
         return res.json();

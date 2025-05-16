@@ -11,16 +11,19 @@ const buttonSubmitFormEditImageProfile =
   formEditImageProfile.querySelector(".form__button");
 
 function activeButtonEditProfile() {
+  buttonSubmitFormEditProfile.textContent = "Guardar";
   buttonSubmitFormEditProfile.removeAttribute("disabled");
   buttonSubmitFormEditProfile.classList.remove("form__button-disabled");
 }
 
 function disabledButtonAddNewPlace() {
+  buttonSubmitFormAddNewPlace.textContent = "Crear";
   buttonSubmitFormAddNewPlace.disabled = true;
   buttonSubmitFormAddNewPlace.classList.add("form__button-disabled");
 }
 
 function disabledButtonEditImageProfile() {
+  buttonSubmitFormEditImageProfile.textContent = "Guardar";
   buttonSubmitFormEditImageProfile.disabled = true;
   buttonSubmitFormEditImageProfile.classList.add("form__button-disabled");
 }
