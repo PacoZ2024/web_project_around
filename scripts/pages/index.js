@@ -73,6 +73,19 @@ const popupFormAddNewPlace = new PopupWithForm(
           "#card-template",
           () => {
             popupCardImage.open(result.link, result.name);
+          },
+          (id, element) => {
+            api
+              .deleteLiked(id)
+              .then((result) => {
+                card._isLiked = result.isLiked;
+                element
+                  .querySelector(".content__like-button-label")
+                  .classList.remove("content__like-button-label-active");
+              })
+              .catch((err) => {
+                console.log(err);
+              });
           }
         );
         const cardElement = card.generateCard();
@@ -104,9 +117,26 @@ api.getInfoProfileUser().then((result) => {
     {
       items: result[1],
       renderer: (item) => {
-        const card = new Card(item, "#card-template", () => {
-          popupCardImage.open(item.link, item.name);
-        });
+        const card = new Card(
+          item,
+          "#card-template",
+          () => {
+            popupCardImage.open(item.link, item.name);
+          },
+          (id, element) => {
+            api
+              .deleteLiked(id)
+              .then((result) => {
+                card._isLiked = result.isLiked;
+                element
+                  .querySelector(".content__like-button-label")
+                  .classList.remove("content__like-button-label-active");
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }
+        );
         const cardElement = card.generateCard();
         cardSection.addItem(cardElement);
       },
