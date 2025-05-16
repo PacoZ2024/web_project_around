@@ -1,4 +1,13 @@
-import Api from "../components/Api.js";
+import Api from "./Api.js";
+import PopupWithConfirmation from "./PopupWithConfirmation.js";
+
+const api = new Api({
+  baseUrl: "https://around-api.es.tripleten-services.com/v1",
+  headers: {
+    authorization: "c7ddeb73-151f-41a7-9f67-d93995416067",
+    "Content-Type": "application/json",
+  },
+});
 
 export default class Card {
   constructor(data, cardSelector, handleCardClick) {
@@ -51,32 +60,25 @@ export default class Card {
   }
 
   _handleDeleteCard() {
-    const api = new Api({
-      baseUrl: "https://around-api.es.tripleten-services.com/v1",
-      headers: {
-        authorization: "c7ddeb73-151f-41a7-9f67-d93995416067",
-        "Content-Type": "application/json",
-      },
-    });
-    api
-      .deleteCard(this._id)
-      .then((result) => {
-        console.log(result.message);
-        this._element.remove();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const popupDeleteConfirmationCard = new PopupWithConfirmation(
+      "#popup__delete-confirmation",
+      () => {
+        api
+          .deleteCard(this._id)
+          .then((result) => {
+            console.log(result.message);
+            this._element.remove();
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    );
+    popupDeleteConfirmationCard.setEventListeners();
+    popupDeleteConfirmationCard.open();
   }
 
   _handleLikeButton() {
-    const api = new Api({
-      baseUrl: "https://around-api.es.tripleten-services.com/v1",
-      headers: {
-        authorization: "c7ddeb73-151f-41a7-9f67-d93995416067",
-        "Content-Type": "application/json",
-      },
-    });
     if (this._isLiked) {
       api
         .deleteLiked(this._id)
