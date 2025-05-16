@@ -51,7 +51,21 @@ export default class Card {
   }
 
   _handleDeleteCard() {
-    this._element.remove();
+    const api = new Api({
+      baseUrl: "https://around-api.es.tripleten-services.com/v1",
+      headers: {
+        authorization: "c7ddeb73-151f-41a7-9f67-d93995416067",
+        "Content-Type": "application/json",
+      },
+    });
+    api
+      .deleteCard(this._id)
+      .then((result) => {
+        this._element.remove();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   _handleLikeButton() {
