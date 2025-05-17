@@ -6,6 +6,10 @@ export default class PopupWithConfirmation extends Popup {
     this._form = this._selectorPopup.querySelector(".form");
   }
 
+  submitAction(objectApi) {
+    this._setSubmitAction = objectApi;
+  }
+
   setEventListeners() {
     super.setEventListeners();
     const closeButton = this._selectorPopup.querySelector(
@@ -13,6 +17,15 @@ export default class PopupWithConfirmation extends Popup {
     );
 
     closeButton.addEventListener("click", () => {
+      this.close();
+    });
+
+    this._form.addEventListener("submit", (evt) => {
+      evt.preventDefault();
+      this._setSubmitAction.api(
+        this._setSubmitAction.id,
+        this._setSubmitAction.element
+      );
       this.close();
     });
   }

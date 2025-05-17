@@ -45,6 +45,17 @@ const api = new Api({
     "Content-Type": "application/json",
   },
 });
+const apiDelete = (ide, element) => {
+  api
+    .deleteCard(ide)
+    .then((result) => {
+      console.log(result.message);
+      element.remove();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 const popupFormEditProfile = new PopupWithForm(
   "#popup__edit-profile",
   (inputsValues) => {
@@ -104,24 +115,13 @@ const popupFormAddNewPlace = new PopupWithForm(
                 console.log(err);
               });
           },
-          (id, element) => {
+          function (id, element) {
             popupDeleteConfirmationCard.open();
-            popupDeleteConfirmationCard._form.addEventListener(
-              "submit",
-              (evt) => {
-                evt.preventDefault();
-                api
-                  .deleteCard(id)
-                  .then((result) => {
-                    console.log(result.message);
-                    element.remove();
-                  })
-                  .catch((err) => {
-                    console.log(err);
-                  });
-                popupDeleteConfirmationCard.close();
-              }
-            );
+            popupDeleteConfirmationCard.submitAction({
+              api: apiDelete,
+              id: id,
+              element: element,
+            });
           }
         );
         const cardElement = card.generateCard();
@@ -185,24 +185,13 @@ api.getInfoProfileUser().then((result) => {
                 console.log(err);
               });
           },
-          (id, element) => {
+          function (id, element) {
             popupDeleteConfirmationCard.open();
-            popupDeleteConfirmationCard._form.addEventListener(
-              "submit",
-              (evt) => {
-                evt.preventDefault();
-                api
-                  .deleteCard(id)
-                  .then((result) => {
-                    console.log(result.message);
-                    element.remove();
-                  })
-                  .catch((err) => {
-                    console.log(err);
-                  });
-                popupDeleteConfirmationCard.close();
-              }
-            );
+            popupDeleteConfirmationCard.submitAction({
+              api: apiDelete,
+              id: id,
+              element: element,
+            });
           }
         );
         const cardElement = card.generateCard();
