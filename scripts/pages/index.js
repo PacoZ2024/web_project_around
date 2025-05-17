@@ -86,6 +86,19 @@ const popupFormAddNewPlace = new PopupWithForm(
               .catch((err) => {
                 console.log(err);
               });
+          },
+          (id, element) => {
+            api
+              .isLiked(id)
+              .then((result) => {
+                card._isLiked = result.isLiked;
+                element
+                  .querySelector(".content__like-button-label")
+                  .classList.add("content__like-button-label-active");
+              })
+              .catch((err) => {
+                console.log(err);
+              });
           }
         );
         const cardElement = card.generateCard();
@@ -131,6 +144,19 @@ api.getInfoProfileUser().then((result) => {
                 element
                   .querySelector(".content__like-button-label")
                   .classList.remove("content__like-button-label-active");
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          },
+          (id, element) => {
+            api
+              .isLiked(id)
+              .then((result) => {
+                card._isLiked = result.isLiked;
+                element
+                  .querySelector(".content__like-button-label")
+                  .classList.add("content__like-button-label-active");
               })
               .catch((err) => {
                 console.log(err);

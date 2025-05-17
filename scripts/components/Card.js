@@ -10,7 +10,13 @@ const api = new Api({
 });
 
 export default class Card {
-  constructor(data, cardSelector, handleCardClick, handleDeleteLiked) {
+  constructor(
+    data,
+    cardSelector,
+    handleCardClick,
+    handleDeleteLiked,
+    handleIsLiked
+  ) {
     this._id = data._id;
     this._name = data.name;
     this._link = data.link;
@@ -18,6 +24,7 @@ export default class Card {
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteLiked = handleDeleteLiked;
+    this._handleIsLiked = handleIsLiked;
   }
   _getTemplate() {
     const cardElement = document
@@ -83,17 +90,7 @@ export default class Card {
     if (this._isLiked) {
       this._handleDeleteLiked(this._id, this._element);
     } else {
-      api
-        .isLiked(this._id)
-        .then((result) => {
-          this._isLiked = result.isLiked;
-          this._element
-            .querySelector(".content__like-button-label")
-            .classList.add("content__like-button-label-active");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      this._handleIsLiked(this._id, this._element);
     }
   }
 }
