@@ -21,4 +21,4 @@ A lo largo de estos últimos sprints (7, 8, 9, 10, 11) ha sufrido diversas modif
 
 ### Vínculo de la página desplegada en GitHub Pages
 
-https://pacoz2024.github.io/web_project_around/
+https://pacoz2024.github.io/web_project_around/src/index.html
