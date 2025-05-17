@@ -13,6 +13,7 @@ import {
 import FormValidator from "../components/FormValidator.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import UserInfo from "../components/UserInfo.js";
 import {
   activeButtonEditProfile,
@@ -57,6 +58,10 @@ const popupFormEditProfile = new PopupWithForm(
       });
   }
 );
+const popupDeleteConfirmationCard = new PopupWithConfirmation(
+  "#popup__delete-confirmation"
+);
+popupDeleteConfirmationCard.setEventListeners();
 const popupFormAddNewPlace = new PopupWithForm(
   "#popup__add-new-place",
   (inputsValues) => {
@@ -99,6 +104,25 @@ const popupFormAddNewPlace = new PopupWithForm(
               .catch((err) => {
                 console.log(err);
               });
+          },
+          (id, element) => {
+            popupDeleteConfirmationCard.open();
+            popupDeleteConfirmationCard._form.addEventListener(
+              "submit",
+              (evt) => {
+                evt.preventDefault();
+                api
+                  .deleteCard(id)
+                  .then((result) => {
+                    console.log(result.message);
+                    element.remove();
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+                popupDeleteConfirmationCard.close();
+              }
+            );
           }
         );
         const cardElement = card.generateCard();
@@ -161,6 +185,25 @@ api.getInfoProfileUser().then((result) => {
               .catch((err) => {
                 console.log(err);
               });
+          },
+          (id, element) => {
+            popupDeleteConfirmationCard.open();
+            popupDeleteConfirmationCard._form.addEventListener(
+              "submit",
+              (evt) => {
+                evt.preventDefault();
+                api
+                  .deleteCard(id)
+                  .then((result) => {
+                    console.log(result.message);
+                    element.remove();
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+                popupDeleteConfirmationCard.close();
+              }
+            );
           }
         );
         const cardElement = card.generateCard();

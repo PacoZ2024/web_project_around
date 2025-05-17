@@ -1,21 +1,11 @@
-import Api from "./Api.js";
-import PopupWithConfirmation from "./PopupWithConfirmation.js";
-
-const api = new Api({
-  baseUrl: "https://around-api.es.tripleten-services.com/v1",
-  headers: {
-    authorization: "c7ddeb73-151f-41a7-9f67-d93995416067",
-    "Content-Type": "application/json",
-  },
-});
-
 export default class Card {
   constructor(
     data,
     cardSelector,
     handleCardClick,
     handleDeleteLiked,
-    handleIsLiked
+    handleIsLiked,
+    handleDeleteCard
   ) {
     this._id = data._id;
     this._name = data.name;
@@ -25,6 +15,7 @@ export default class Card {
     this._handleCardClick = handleCardClick;
     this._handleDeleteLiked = handleDeleteLiked;
     this._handleIsLiked = handleIsLiked;
+    this._handleDeleteCard = handleDeleteCard;
   }
   _getTemplate() {
     const cardElement = document
@@ -51,13 +42,17 @@ export default class Card {
     this._element
       .querySelector(".content__like-button-label")
       .addEventListener("click", () => {
-        this._handleLikeButton();
+        if (this._isLiked) {
+          this._handleDeleteLiked(this._id, this._element);
+        } else {
+          this._handleIsLiked(this._id, this._element);
+        }
       });
 
     this._element
       .querySelector(".content__delete-button-label")
       .addEventListener("click", () => {
-        this._handleDeleteCard();
+        this._handleDeleteCard(this._id, this._element);
       });
 
     this._element
@@ -65,32 +60,5 @@ export default class Card {
       .addEventListener("click", () => {
         this._handleCardClick();
       });
-  }
-
-  _handleDeleteCard() {
-    const popupDeleteConfirmationCard = new PopupWithConfirmation(
-      "#popup__delete-confirmation",
-      () => {
-        api
-          .deleteCard(this._id)
-          .then((result) => {
-            console.log(result.message);
-            this._element.remove();
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-    );
-    popupDeleteConfirmationCard.setEventListeners();
-    popupDeleteConfirmationCard.open();
-  }
-
-  _handleLikeButton() {
-    if (this._isLiked) {
-      this._handleDeleteLiked(this._id, this._element);
-    } else {
-      this._handleIsLiked(this._id, this._element);
-    }
   }
 }
