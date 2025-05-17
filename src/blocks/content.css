@@ -221,7 +221,7 @@
 .content__like-button-label-active {
   height: 20px;
   width: 20px;
-  background-image: url("../images/Like_active.svg");
+  background-image: url("../../images/Like_active.svg");
   background-repeat: no-repeat;
   background-position: center;
 }

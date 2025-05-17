@@ -1,5 +1,5 @@
-import Section from "../components/Section.js";
-import Card from "../components/Card.js";
+import Section from "../scripts/components/Section.js";
+import Card from "../scripts/components/Card.js";
 import {
   cardsContainer,
   editProfileButton,
@@ -9,20 +9,20 @@ import {
   settingsFormEditImageProfile,
   editImageProfile,
   editImageProfileContainer,
-} from "../utils/constants.js";
-import FormValidator from "../components/FormValidator.js";
-import PopupWithForm from "../components/PopupWithForm.js";
-import PopupWithImage from "../components/PopupWithImage.js";
-import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
-import UserInfo from "../components/UserInfo.js";
+} from "../scripts/utils/constants.js";
+import FormValidator from "../scripts/components/FormValidator.js";
+import PopupWithForm from "../scripts/components/PopupWithForm.js";
+import PopupWithImage from "../scripts/components/PopupWithImage.js";
+import PopupWithConfirmation from "../scripts/components/PopupWithConfirmation.js";
+import UserInfo from "../scripts/components/UserInfo.js";
 import {
   activeButtonEditProfile,
   showInputsFormEditProfile,
   disabledButtonAddNewPlace,
   disabledButtonEditImageProfile,
   removeEventListener,
-} from "../utils/utils.js";
-import Api from "../components/Api.js";
+} from "../scripts/utils/utils.js";
+import Api from "../scripts/components/Api.js";
 
 const dataUser = new UserInfo(".content__profile-name", ".content__about-me");
 const popupCardImage = new PopupWithImage("#popup__show-image");
@@ -61,7 +61,6 @@ const popupFormEditProfile = new PopupWithForm(
 const popupDeleteConfirmationCard = new PopupWithConfirmation(
   "#popup__delete-confirmation"
 );
-popupDeleteConfirmationCard.setEventListeners();
 const popupFormAddNewPlace = new PopupWithForm(
   "#popup__add-new-place",
   (inputsValues) => {
@@ -215,6 +214,7 @@ api.getInfoProfileUser().then((result) => {
   cardSection.renderItems();
 });
 
+popupDeleteConfirmationCard.setEventListeners();
 popupCardImage.setEventListeners();
 popupFormEditProfile.setEventListeners();
 popupFormAddNewPlace.setEventListeners();
