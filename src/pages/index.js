@@ -146,62 +146,75 @@ const popupFormEditImageProfile = new PopupWithForm(
   }
 );
 
-api.getInfoProfileUser().then((result) => {
-  dataUser.setUserInfo(result[0].name, result[0].about);
-  editImageProfile.src = result[0].avatar;
-  const cardSection = new Section(
-    {
-      items: result[1],
-      renderer: (item) => {
-        const card = new Card(
-          item,
-          "#card-template",
-          () => {
-            popupCardImage.open(item.link, item.name);
-          },
-          (id, element) => {
-            api
-              .deleteLiked(id)
-              .then((result) => {
-                card._isLiked = result.isLiked;
-                element
-                  .querySelector(".content__like-button-label")
-                  .classList.remove("content__like-button-label-active");
-              })
-              .catch((err) => {
-                console.log(err);
+api
+  .getProfileUser()
+  .then((result) => {
+    dataUser.setUserInfo(result.name, result.about);
+    editImageProfile.src = result.avatar;
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+api
+  .getInitialCards()
+  .then((result) => {
+    const cardSection = new Section(
+      {
+        items: result,
+        renderer: (item) => {
+          const card = new Card(
+            item,
+            "#card-template",
+            () => {
+              popupCardImage.open(item.link, item.name);
+            },
+            (id, element) => {
+              api
+                .deleteLiked(id)
+                .then((result) => {
+                  card._isLiked = result.isLiked;
+                  element
+                    .querySelector(".content__like-button-label")
+                    .classList.remove("content__like-button-label-active");
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+            },
+            (id, element) => {
+              api
+                .isLiked(id)
+                .then((result) => {
+                  card._isLiked = result.isLiked;
+                  element
+                    .querySelector(".content__like-button-label")
+                    .classList.add("content__like-button-label-active");
+                })
+                .catch((err) => {
+                  console.log(err);
+                });
+            },
+            function (id, element) {
+              popupDeleteConfirmationCard.open();
+              popupDeleteConfirmationCard.submitAction({
+                api: apiDelete,
+                id: id,
+                element: element,
               });
-          },
-          (id, element) => {
-            api
-              .isLiked(id)
-              .then((result) => {
-                card._isLiked = result.isLiked;
-                element
-                  .querySelector(".content__like-button-label")
-                  .classList.add("content__like-button-label-active");
-              })
-              .catch((err) => {
-                console.log(err);
-              });
-          },
-          function (id, element) {
-            popupDeleteConfirmationCard.open();
-            popupDeleteConfirmationCard.submitAction({
-              api: apiDelete,
-              id: id,
-              element: element,
-            });
-          }
-        );
-        const cardElement = card.generateCard();
-        cardSection.addItem(cardElement);
+            }
+          );
+          const cardElement = card.generateCard();
+          cardSection.addItem(cardElement);
+        },
       },
-    },
-    ".content__images"
-  );
-  cardSection.renderItems();
-});
+      ".content__images"
+    );
+    cardSection.renderItems();
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 popupDeleteConfirmationCard.setEventListeners();
 popupCardImage.setEventListeners();

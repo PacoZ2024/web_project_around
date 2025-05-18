@@ -4,8 +4,8 @@ export default class Api {
     this.headers = options.headers;
   }
 
-  getInfoProfileUser() {
-    const cardsPromise = fetch(`${this.baseUrl}/cards/`, {
+  getInitialCards() {
+    return fetch(`${this.baseUrl}/cards/`, {
       headers: this.headers,
     }).then((res) => {
       if (res.ok) {
@@ -13,7 +13,10 @@ export default class Api {
       }
       return Promise.reject(`Error al cargar las cartas: ${res.status}`);
     });
-    const userInfoPromise = fetch(`${this.baseUrl}/users/me`, {
+  }
+
+  getProfileUser() {
+    return fetch(`${this.baseUrl}/users/me`, {
       headers: this.headers,
     }).then((res) => {
       if (res.ok) {
@@ -23,14 +26,6 @@ export default class Api {
         `Error al cargar la información del usuario: ${res.status}`
       );
     });
-    const promises = [userInfoPromise, cardsPromise];
-    return Promise.all(promises)
-      .then((results) => {
-        return results;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   editProfile(nameProfile, aboutProfile) {
