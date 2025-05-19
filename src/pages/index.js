@@ -242,6 +242,9 @@ addNewPlaceButton.addEventListener("click", () => {
 });
 
 editImageProfileContainer.addEventListener("click", () => {
+  editImageProfileContainer.classList.remove(
+    "content__icon-edit-image-profile-container-active"
+  );
   formValidatorEditImageProfile.resetValidation();
   disabledButtonEditImageProfile();
   popupFormEditImageProfile.open();
