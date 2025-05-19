@@ -9,7 +9,6 @@ import {
   settingsFormEditImageProfile,
   editImageProfile,
   editImageProfileContainer,
-  iconEditImageProfile,
 } from "../scripts/utils/constants.js";
 import FormValidator from "../scripts/components/FormValidator.js";
 import PopupWithForm from "../scripts/components/PopupWithForm.js";
@@ -248,8 +247,14 @@ editImageProfileContainer.addEventListener("click", () => {
   popupFormEditImageProfile.open();
 });
 
-iconEditImageProfile.addEventListener("click", () => {
-  iconEditImageProfile.classList.add(
-    "content__icon-edit-image-profile-container-disabled "
+editImageProfileContainer.addEventListener("mouseover", () => {
+  editImageProfileContainer.classList.add(
+    "content__icon-edit-image-profile-container-active"
+  );
+});
+
+editImageProfileContainer.addEventListener("mouseout", () => {
+  editImageProfileContainer.classList.remove(
+    "content__icon-edit-image-profile-container-active"
   );
 });

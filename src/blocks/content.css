@@ -37,14 +37,10 @@
   opacity: 0;
 }
 
-.content__icon-edit-image-profile-container:hover {
+.content__icon-edit-image-profile-container-active {
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.8);
   opacity: 1;
-}
-
-.content__icon-edit-image-profile-container-disabled {
-  opacity: 0;
 }
 
 .content__icon-edit-image-profile {
