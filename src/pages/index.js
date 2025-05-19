@@ -9,6 +9,7 @@ import {
   settingsFormEditImageProfile,
   editImageProfile,
   editImageProfileContainer,
+  iconEditImageProfile,
 } from "../scripts/utils/constants.js";
 import FormValidator from "../scripts/components/FormValidator.js";
 import PopupWithForm from "../scripts/components/PopupWithForm.js";
@@ -245,4 +246,8 @@ editImageProfileContainer.addEventListener("click", () => {
   formValidatorEditImageProfile.resetValidation();
   disabledButtonEditImageProfile();
   popupFormEditImageProfile.open();
+});
+
+iconEditImageProfile.addEventListener("click", () => {
+  iconEditImageProfile.opacity = 0;
 });

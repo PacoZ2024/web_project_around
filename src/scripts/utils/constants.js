@@ -10,6 +10,9 @@ export const editImageProfile = content.querySelector(".content__avatar-image");
 export const editImageProfileContainer = content.querySelector(
   ".content__icon-edit-image-profile-container"
 );
+export const iconEditImageProfile = content.querySelector(
+  ".content__icon-edit-image-profile-container"
+);
 
 export const settingsFormEditProfile = {
   settings: {
