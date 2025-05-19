@@ -43,6 +43,10 @@
   opacity: 1;
 }
 
+.content__icon-edit-image-profile-container-disabled {
+  opacity: 0;
+}
+
 .content__icon-edit-image-profile {
   position: absolute;
   top: 47px;

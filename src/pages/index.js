@@ -249,5 +249,7 @@ editImageProfileContainer.addEventListener("click", () => {
 });
 
 iconEditImageProfile.addEventListener("click", () => {
-  iconEditImageProfile.opacity = 0;
+  iconEditImageProfile.classList.add(
+    "content__icon-edit-image-profile-container-disabled "
+  );
 });
