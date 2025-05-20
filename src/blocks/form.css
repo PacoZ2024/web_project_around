@@ -67,16 +67,32 @@
   margin: 44px 0 7px;
 }
 
+.form__field-name:focus {
+  margin: 41.5px -3px 4.5px;
+}
+
 .form__field-about-me {
   margin: 0 0 7px;
+}
+
+.form__field-about-me:focus {
+  margin: -2.5px -3px 4.5px;
 }
 
 .form__field-title {
   margin: 44px 0 7px;
 }
 
+.form__field-title:focus {
+  margin: 41.5px -3px 4.5px;
+}
+
 .form__field-link-image {
   margin: 0 0 7px;
+}
+
+.form__field-link-image:focus {
+  margin: -2.5px -3px 4.5px;
 }
 
 #form__edit-image-profile {
@@ -85,6 +101,10 @@
 
 .form__field-link-image-profile {
   margin: 54px 0 7px;
+}
+
+.form__field-link-image-profile:focus {
+  margin: 51.4px -3px 4.4px;
 }
 
 #form__delete-confirmation {
@@ -191,12 +211,20 @@
     margin: 34px 0 7px;
   }
 
+  .form__field-name:focus {
+    margin: 31.5px -3px 4.5px;
+  }
+
   .form__field-about-me {
     margin: 0 0 7px;
   }
 
   .form__field-title {
     margin: 34px 0 7px;
+  }
+
+  .form__field-title:focus {
+    margin: 31.5px -3px 4.5px;
   }
 
   .form__field-link-image {
