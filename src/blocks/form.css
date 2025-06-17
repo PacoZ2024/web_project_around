@@ -103,6 +103,10 @@
   margin: 54px 0 7px;
 }
 
+.form__field-link-image-profile:focus {
+  margin: 51.5px -3px 4.5px;
+}
+
 #form__delete-confirmation {
   height: 161px;
 }
